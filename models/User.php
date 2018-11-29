@@ -1,0 +1,179 @@
+<?php
+class User{
+    private $id;
+    private $username;
+    private $password;
+    private $name_user;
+    private $first_surname;
+    private $dni;
+    private $email;
+    private $phone_number;
+    private $type_of_user;
+    private $db;
+    
+    public function __construct() {
+        $this->db = Database::connect();
+    }
+    
+    function getId() {
+        return $this->id;
+    }
+
+    function getUsername() {
+        return $this->username;
+    }
+
+    function getPassword() {
+        return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost'=>4]);
+    }
+
+    function getName_user() {
+        return $this->name_user;
+    }
+
+    function getFirst_surname() {
+        return $this->first_surname;
+    }
+
+    function getDni() {
+        return $this->dni;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getPhone_number() {
+        return $this->phone_number;
+    }
+
+    function getType_of_user() {
+        return $this->type_of_user;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setUsername($username) {
+        $this->username = $this->db->real_escape_string($username);
+    }
+
+    function setPassword($password) {
+        $this->password = $this->db->real_escape_string($password);
+    }
+
+    function setName_user($name_user) {
+        $this->name_user = $this->db->real_escape_string($name_user);
+    }
+
+    function setFirst_surname($first_surname) {
+        $this->first_surname = $this->db->real_escape_string($first_surname);
+    }
+
+    function setDni($dni) {
+        $this->dni = $this->db->real_escape_string($dni);
+    }
+
+    function setEmail($email) {
+        $this->email = $this->db->real_escape_string($email);
+    }
+
+    function setPhone_number($phone_number) {
+        $this->phone_number = $this->db->real_escape_string($phone_number);
+    }
+
+    function setType_of_user($type_of_user) {
+        $this->type_of_user = $type_of_user;
+    }
+    function login(){
+        $result = false;
+        $username = $this->username;
+        $password = $this->password;
+        
+        // Check if user exists
+        $sql = "select * from users where username = '$username' ";
+        $login = $this->db->query($sql);
+        if($login && $login->num_rows == 1){
+            $user = $login->fetch_object();
+            
+            // Check password
+            $verify = password_verify($password, $user->password);
+            if($verify){
+                $result = $user;
+            }
+        }
+        return $result;
+    }
+    
+    private function checkUser(){
+        $SQLQuery = "select * from users where username='{$this->username}'";
+        $login = $this->db->query($SQLQuery);
+        if($login->num_rows == 1 || !$this->username)return false;
+        return true;
+    }
+    private function checkName_User(){
+        if(is_numeric($this->name_user) || preg_match("/[0-9]/", $this->name_user) || !$this->name_user) return false;
+        return true;
+    }
+    
+    private function checkFirst_surname(){
+        if(is_numeric($this->first_surname) || preg_match("/[0-9]/", $this->first_surname) || !$this->first_surname) return false;
+        return true;
+    }
+    
+    private function checkDni(){
+        $SQLQuery = "select * from users where dni='{$this->username}'";
+        $login = $this->db->query($SQLQuery);
+        if(!$this->dni)return false;
+        if(strlen($this->dni)<9 || $login->num_rows == 1) return false;
+        if(!ctype_alpha(substr($this->dni, -1)) || !is_numeric(substr($this->dni, 0, -1))) return false;
+        return true;
+    }
+    
+    private function checkEmail(){
+        $SQLQuery = "select * from users where email='{$this->email}'";
+        $login = $this->db->query($SQLQuery);
+        if(!$this->email)return false;
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) return false;
+        if($login->num_rows == 1)return false;
+        return true;
+    }
+    
+    private function checkPhone_number(){
+        $SQLQuery = "select * from users where phone_number='{$this->phone_number}'";
+        $login = $this->db->query($SQLQuery);
+        if($login->num_rows == 1)return false;
+        if(strlen(strval($this->phone_number)) != 9)return false;
+        return true;
+    }
+    
+    function checkData(){
+        // Arrays of Errors
+        $errors = array();
+        
+        if(!$this->checkUser())$errors['username'] = "Username is already being used";
+        if(!$this->checkName_User()) $errors['name_user'] = "Name not valid";
+        if(!$this->checkDni()) $errors['dni'] = "Dni not valid";
+        if(!$this->checkEmail()) $errors['email'] = "Email not valid";
+        if(!$this->checkPhone_number()) $errors['phone_number'] = "Phone Number not valid";
+
+        return $errors;
+    }
+    
+    function save(){
+        $sqlQuery = "insert into users values(null, '$this->username', '{$this->getPassword()}', '{$this->name_user}', '{$this->first_surname}', '{$this->dni}', '{$this->email}', {$this->phone_number}, {$this->type_of_user})";
+        $save = $this->db->query($sqlQuery);
+        if($save){
+            return true;
+        }
+        return false;
+        
+    }
+
+    
+}
+
+
+
+

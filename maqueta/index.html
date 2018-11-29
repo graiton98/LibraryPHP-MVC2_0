@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Maqueta</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header class="centrar">
+            <div class="logo">Feather</div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#">Reservations</a>
+                    </li>
+                    <li>
+                        <a href="#">Manage Users</a>
+                    </li>
+                    <li>
+                        <a href="#">Manage Categories</a>
+                    </li>
+                    <li>
+                        <form action="" method="POST" class="search">
+                            <label for="search" class="hidden" >Search</label>
+                            <input type="text" name="search" placeholder="Search..." onfocus="this.placeholder=''" onblur="this.placeholder='Search...'" />
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                        
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="centrar">
+            <h1>Personal Settings</h1>
+            <form>
+                <div class="label-input">
+                    <label for="username">Username</label>
+                    <input type="text" name="text" value="Graiton"/>
+                </div>
+                <div class="label-input">
+                    <label for="name_user">Name</label>
+                    <input type="text" name="name_user" value="Biel"/>
+                </div>
+                <div class="label-input">
+                    <label for="first_surname">First Surname</label>
+                    <input type="text" name="first_surname" value="Lopez"/>
+                </div>
+                <div class="label-input">
+                    <label for="dni">Dni</label>
+                    <input type="text" name="dni" value="41511387K"/>
+                </div>
+                <div class="label-input">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" value="Graiton98@gmail.com"/>
+                </div>
+                <div class="label-input">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="number" name="phone_number" value="610950844"/>
+                </div>
+                <div class="button">
+                    <input type="submit" value="SAVE" />
+                </div>
+                
+            </form>
+        </main>
+        <footer>
+            <p>&copy;All Rights Reserved Gabriel Lopez Monjo</p>
+            <a href="#">Contact Us</a>
+        </footer>
+    </body>
+</html>

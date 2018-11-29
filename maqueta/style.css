@@ -1,0 +1,125 @@
+.search{
+    display:flex;
+    flex-direction: row;
+}
+.search input[type=text]{
+    width: 100px;
+    background-color:black;
+    border:none;
+    border-bottom: 1px solid white;
+    color:white;
+    
+}
+.search input[type=text]:focus{
+    border:none;
+    border:1px solid white;
+    
+}
+.search button{
+    background-color: black;
+    color:white;
+    border:none;
+}
+.search button:hover{
+    cursor:pointer;
+}
+.hidden{
+    display:none;
+}
+.centrar{
+    padding: 0 8% !important;
+}
+header{
+    display: flex !important;
+    justify-content: space-around;
+    align-items:center;
+    height: 4rem;
+    background-color: #f84a31;
+    background-color: black;
+    color:white;
+}
+.logo{
+    flex: 1 1 20%;
+}
+nav{
+    flex: 1 1 80%;
+}
+nav ul{
+    margin: 0;
+    padding: 0;
+    flex:1 1 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+nav ul li{
+    list-style: none;
+}
+nav ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+main h1{
+    border-bottom: 2px solid #e1e4ed;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0.67em;
+}
+
+.label-input{
+    display:flex;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+.label-input label{
+    margin-right:2rem;
+    text-align: right;
+    padding: 7px;
+    flex: 1 0 50%;
+    font-weight: bold;
+}
+
+.label-input input{
+    background-color: #e1e4ed;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    flex: 1 1 50%;
+}
+form .button{
+    align-self: flex-end;
+}
+form .button input[type=submit]{
+    background-color: black;
+    color:white;
+    border:none;
+    padding: 8px;
+    border-radius: 5px;
+}
+form .button input[type=submit]:hover{
+    background-color: #f84a31;
+    cursor:pointer;
+}
+
+footer{
+    background-color:black;
+    display: flex;
+    justify-content: center;
+}
+footer p{
+    color: white;
+    margin: 0;
+}
+footer a{
+    text-decoration: none;
+    color:white;
+}
+
+.carousel-size{
+    height: 50rem !important;
+}
