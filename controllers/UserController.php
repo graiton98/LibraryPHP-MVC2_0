@@ -18,8 +18,6 @@ class UserController{
             $user->setUsername($_POST['username']);
             $user->setPassword($_POST['password']);
             $userIdentify = $user->login();
-            /*var_dump($userIdentify);
-            die();*/
             
             // Create session
             if($userIdentify && is_object($userIdentify)){
@@ -36,8 +34,8 @@ class UserController{
         }else{
             $_SESSION['error_login'] = "Failed Identification";
         }
-        if(isset($_SESSION['userIdentify'])) header ('Location:'.BASE_URL);
-       else header("Location:".BASE_URL."user/login");
+        if(isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
+        else header("Location:".BASE_URL."user/login");
     }
     
     
@@ -91,13 +89,13 @@ class UserController{
             
             $errors = $user->checkData();
             /*echo '<pre>' . var_export($errors, true) . '</pre>';
+            echo count($errors);
             die();*/
             if(count($errors) == 0){
                 /*echo '<pre>' . var_export($errors, true) . '</pre>';
                 die();*/
                 $save = $user->save();
-                /*echo '<pre>' . var_export($save, true) . '</pre>';
-                die();*/
+                
                 
                 if($save){
                     $_SESSION['register'] = "completed";

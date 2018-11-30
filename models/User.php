@@ -24,7 +24,7 @@ class User{
     }
 
     function getPassword() {
-        return password_hash($this->db->real_escape_string($this->password), PASSWORD_BCRYPT, ['cost'=>4]);
+        return $this->password;
     }
 
     function getName_user() {
@@ -92,13 +92,13 @@ class User{
         $password = $this->password;
         
         // Check if user exists
-        $sql = "select * from users where username = '$username' ";
+        $sql = "select id, username, AES_DECRYPT(password, 'secreta') as password, name_user, first_surname, dni, email, phone_number, type_of_user from users where username = '$username' ";
         $login = $this->db->query($sql);
         if($login && $login->num_rows == 1){
             $user = $login->fetch_object();
             
             // Check password
-            $verify = password_verify($password, $user->password);
+            $verify = ($password == $user->password) ? true : false;
             if($verify){
                 $result = $user;
             }
@@ -162,7 +162,7 @@ class User{
     }
     
     function save(){
-        $sqlQuery = "insert into users values(null, '$this->username', '{$this->getPassword()}', '{$this->name_user}', '{$this->first_surname}', '{$this->dni}', '{$this->email}', {$this->phone_number}, {$this->type_of_user})";
+        $sqlQuery = "insert into users values(null, '$this->username', AES_ENCRYPT('{$this->getPassword()}', 'secreta'), '{$this->name_user}', '{$this->first_surname}', '{$this->dni}', '{$this->email}', {$this->phone_number}, {$this->type_of_user})";
         $save = $this->db->query($sqlQuery);
         if($save){
             return true;

@@ -80,7 +80,7 @@ create table Copy(
 create table Reservation(
     id_book_fk         int(255) not null,
     id_username     int(255) not null,
-    takenDate       datetime not null,
+    takenDate       date not null,
     primary key (id_book_fk,id_username),
     CONSTRAINT `fk_reservation_book` FOREIGN KEY (`id_book_fk`) REFERENCES `Books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `fk_reservation_user` FOREIGN KEY (`id_username`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE 
@@ -125,5 +125,10 @@ create table Borrow(
     
     Books
     insert into books values(null, '9788408193296', 'los señores del tiempo', 3, 1, 'La millor novela negra del puto món papa', 1);
+
+    Copies
+
+    insert into copy values(null, 1, 'Perfect');
+    insert into copy values(null, 2, 'Perfect');
     
 */

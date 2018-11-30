@@ -7,7 +7,7 @@
         <p><span class="titol-info">Name</span> <?=$book->name_book?></p>
         <p><span class='titol-info'>ISBN</span> <?=$book->isbn?></p>
         <p><span class="titol-info">Description</span> <?=$book->description?></p>
-        <a href="<?=BASE_URL?>Reserve/reserve&id=<?=$book->id?>">Reserve</a>
+        <a href="<?=BASE_URL?>Reserve/create&id=<?=$book->id?>">Reserve</a>
     </div>
 </div>
 <?php endif; ?>
