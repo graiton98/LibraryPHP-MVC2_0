@@ -78,10 +78,11 @@ create table Copy(
 
 
 create table Reservation(
+    code               int  not null primary key,
     id_book_fk         int(255) not null,
     id_username     int(255) not null,
     takenDate       date not null,
-    primary key (id_book_fk,id_username),
+    /*primary key (id_book_fk,id_username),*/
     CONSTRAINT `fk_reservation_book` FOREIGN KEY (`id_book_fk`) REFERENCES `Books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `fk_reservation_user` FOREIGN KEY (`id_username`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -90,7 +91,8 @@ create table Borrow(
     id_copy_fk      int(255) not null,
     id_book_copy_fk int(255) not null,
     id_username     int(255) not null,
-    takenDate       datetime,
+    takenDate       date,
+    returnDate      date,
     primary key (id_copy_fk,id_book_copy_fk, id_username),
     CONSTRAINT `fk_borrow_user` FOREIGN KEY (`id_username`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `fk_borrow_copy` FOREIGN KEY (`id_copy_fk`, `id_book_copy_fk`) REFERENCES `Copy` (`id`, `id_book_fk`) ON DELETE CASCADE ON UPDATE CASCADE
