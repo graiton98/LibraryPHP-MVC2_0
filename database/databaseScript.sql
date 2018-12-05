@@ -20,7 +20,7 @@ create table TypeOfUser(
 create table Users(
     id              int(255)     not null primary key auto_increment,
     username        varchar(20)  not null,
-    password        varchar(255) not null,
+    password        VARBINARY(255) not null,
     name_user       varchar(20)  not null,
     first_surname   varchar(50)  not null,
     dni             char(9)      not null,
@@ -78,7 +78,7 @@ create table Copy(
 
 
 create table Reservation(
-    code               int  not null primary key,
+    code               int  not null auto_increment primary key,
     id_book_fk         int(255) not null,
     id_username     int(255) not null,
     takenDate       date not null,
@@ -91,7 +91,7 @@ create table Borrow(
     id_copy_fk      int(255) not null,
     id_book_copy_fk int(255) not null,
     id_username     int(255) not null,
-    takenDate       date,
+    takenDate       date not null,
     returnDate      date,
     primary key (id_copy_fk,id_book_copy_fk, id_username),
     CONSTRAINT `fk_borrow_user` FOREIGN KEY (`id_username`) REFERENCES `Users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -126,11 +126,15 @@ create table Borrow(
     insert into authors values(null, 'Eva', 'Garcia');
     
     Books
-    insert into books values(null, '9788408193296', 'los señores del tiempo', 3, 1, 'La millor novela negra del puto món papa', 1);
+    insert into books values(null, '9788408193296', 'los señores del tiempo', 5, 1, 'La millor novela negra del puto món papa', 1);
 
     Copies
 
     insert into copy values(null, 1, 'Perfect');
-    insert into copy values(null, 2, 'Perfect');
+    insert into copy values(null, 1, 'Perfect');
+    insert into copy values(null, 1, 'Perfect');
+    insert into copy values(null, 1, 'Perfect');
+    insert into copy values(null, 1, 'Perfect');
+
     
 */

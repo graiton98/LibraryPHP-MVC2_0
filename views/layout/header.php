@@ -34,7 +34,7 @@
                             <a href="<?=BASE_URL?>user/login">Login</a>
                         </li>
                         <li>
-                            <a href="<?=BASE_URL?>user/register" >Register</a>
+                            <a href="<?=BASE_URL?>user/register">Register</a>
                         </li>
                         
                     <?php else: ?>
@@ -51,9 +51,12 @@
                                 <a href="#">Manage Categories</a>
                             </li>
                             <li>
-                                <a href="#">Manage Manage Users</a>
+                                <a href="#">Manage Users</a>
                             </li>
                         <?php endif; ?>
+                            <li>
+                                <a href="user/logout">Logout</a>
+                            </li>
                     <?php endif; ?>
                 </ul>
             </nav>

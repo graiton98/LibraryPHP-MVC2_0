@@ -24,7 +24,6 @@ class Utils{
         $categories = $category->getAll();
         
         return $categories;
-        
     }
 }
 

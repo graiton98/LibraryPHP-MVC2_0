@@ -64,7 +64,7 @@
                     <h2>Harry Potter</h2>
                     <p>By Gabriel Lopez</p>
                     <p>Estrelles</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" >More Information</a>
+                    <a href="<?=BASE_URL?>Book/see&id=1">More Information</a>
                 </div>
             </div>
             <div class="book-rented">

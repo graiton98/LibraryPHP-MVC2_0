@@ -34,11 +34,17 @@ class Reserve{
         $this->takenDate = $takenDate;
     }
     
-    function getAllDates(){
-        $sql = "select takenDate from reservation where id_book_fk=".$this->id_book_fk;
-        
+    function checkDates($userDate, $userDate2, $id){
+        $sql = "select count(*) as total from reservation where id_book_fk= {$id} and takenDate between '{$userDate}' and '{$userDate2}';";
         $result = $this->db->query($sql);
-        
+        $count = $result->fetch_assoc();
+        //echo $count['total'];
+        //die();
+        if($count['total']<COPIES){
+            return true; // You can reserve because it's available
+        }else{
+            return false; // You can't reserve
+        }
     }
     
 }
