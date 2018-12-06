@@ -48,7 +48,7 @@
                         <?php if(isset($_SESSION['admin']) || isset($_SESSION['librarian'])):?>
                         
                             <li>
-                                <a href="#">Manage Categories</a>
+                                <a href="category/see">Manage Categories</a>
                             </li>
                             <li>
                                 <a href="#">Manage Users</a>

@@ -31,5 +31,30 @@ class Category{
         return $categories;
     }
     
+    function add(){
+        $sql = "insert into categories values(null, '{$this->name_category}');";
+        $this->db->query($sql);
+    }
+    
+    function checkIfExists(){
+        $sql = "select count(*) as total from categories where name_category='{$this->name_category}'";
+        $result = $this->db->query($sql);
+        $count = $result->fetch_assoc();
+        if($count['total'] == 0) return false;
+        return true;
+    }
+    
+    function checkIfExistsById(){
+        $sql = "select count(*) as total from categories where id={$this->id}";
+        $result = $this->db->query($sql);
+        $count = $result->fetch_assoc();
+        if($count['total'] == 0) return false;
+        return true;
+    }
+    function delete(){
+        $sql = "delete from categories where id={$this->id};";
+        $result = $this->db->query($sql);
+    }
+    
 }
 

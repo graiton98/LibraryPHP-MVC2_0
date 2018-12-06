@@ -39,5 +39,5 @@ if(class_exists($name_controller)){
 }else{
     show_error();
 }
-require_once 'views/layout/sidebar.php';
+//require_once 'views/layout/sidebar.php';
 require_once 'views/layout/footer.php';

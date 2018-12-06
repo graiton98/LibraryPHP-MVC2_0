@@ -11,6 +11,16 @@ class Utils{
         else return true;
     }
     
+    static function isLibrarian(){
+        if(!isset($_SESSION['librarian'])) header ('Location:'.BASE_URL);
+        else return true;
+    }
+    
+    static function hasPower(){ // Check if is admin or librarian
+        if(isset($_SESSION['librarian']) || isset($_SESSION['admin'])) return true;
+        else header ('Location:'.BASE_URL);
+    }
+    
     static function deleteSession($name_session){
         if(isset($_SESSION[$name_session])){
             unset($_SESSION[$name_session]);

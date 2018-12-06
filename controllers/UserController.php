@@ -12,7 +12,7 @@ class UserController{
     
     function saveLogin(){
         if(isset($_POST)){
-            
+
             // Query to Database
             $user = new User();
             $user->setUsername($_POST['username']);
