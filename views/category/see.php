@@ -1,18 +1,18 @@
 <div class="content">
     <h1>Categories</h1>
+    <?php if(isset($_SESSION['category_result'])):?>
+        <p><?php echo $_SESSION['category_result']?></p>
+        <?php Utils::deleteSession('category_result') ?>
+    <?php endif; ?>
     <a href="<?=BASE_URL?>category/add"><i class="fas fa-plus"></i>Add Category</a>
     <table>
       <tr>
-        <th>Id</th>
         <th>Category Name</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
           <?php while($cat = $categories->fetch_object()): ?>
             <tr>
-                <td>
-                   <?=$cat->id?>
-                </td>
                 <td>
                    <?=$cat->name_category?>
                 </td>

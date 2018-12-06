@@ -71,5 +71,29 @@ class CategoryController{
             header('Location:'.BASE_URL);
         }
     }
+        function save(){
+        Utils::hasPower(); // Check if session admin or librarian exists
+        if(isset($_GET)){
+            if(isset($_POST)){
+               $category = new Category();
+               $category->setId($_GET['id']);
+               $category->setName_category(ucfirst($_POST['category']));
+               if(!$category->checkIfExists()){
+                   $category->save();
+                   $_SESSION['category_result'] = "Category modified succesfully";
+                   header('Location:'.BASE_URL."category/see");
+               }else{
+                   $_SESSION['category_result'] = "There is aldready a category with that name";
+                   $_SESSION['name_category'] = $category->getName_category();
+                   header('Location:'.BASE_URL."category/edit&id={$category->getId()}");
+               }
+            }else{
+                header('Location:'.BASE_URL);
+            }
+        }else{
+            header('Location:'.BASE_URL);
+        }
+        
+    }
 }
 
