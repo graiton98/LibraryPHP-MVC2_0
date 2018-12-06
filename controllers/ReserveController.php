@@ -36,9 +36,14 @@ class ReserveController{
             $result2 = $reserveObj->checkDates($userDate, $userDateAdd20, $id);
             
             if($result1 && $result2){
+                
                 // Create Reserve
+                /*$reserveObj->setId_book_fk($id);
+                var_dump($_SESSION['userIdentity']);
+                die();
+                //$reserveObj->getId_username()*/
             }else{
-                $_SESSION['error_date_reserve'] = "Selected Date isn't available ";
+                $_SESSION['error_date_reserve'] = "Selected Date isn't available, select another one.";
                 header('Location:'.BASE_URL.'Reserve/create&id='.$id);
             }
             

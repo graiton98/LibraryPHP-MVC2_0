@@ -78,8 +78,8 @@ create table Copy(
 
 
 create table Reservation(
-    code               int  not null auto_increment primary key,
-    id_book_fk         int(255) not null,
+    code            int  not null auto_increment primary key,
+    id_book_fk      int(255) not null,
     id_username     int(255) not null,
     takenDate       date not null,
     /*primary key (id_book_fk,id_username),*/
@@ -135,6 +135,9 @@ create table Borrow(
     insert into copy values(null, 1, 'Perfect');
     insert into copy values(null, 1, 'Perfect');
     insert into copy values(null, 1, 'Perfect');
+
+    Reserves
+    INSERT INTO `reservation` (`code`, `id_book_fk`, `id_username`, `takenDate`) VALUES (NULL, '1', '1', '2019-01-03');
 
     
 */

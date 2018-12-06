@@ -1,15 +1,24 @@
 <?php
 
 class Reserve{
+    private $code;
     private $id_book_fk;
     private $id_username;
     private $takenDate;
     private $db;
     
     function __construct() {
-        $this->db = Database::connect();
+       $this->db = Database::connect();
     }
-    
+     
+    function getCode() {
+        return $this->code;
+    }
+
+    function setCode($code) {
+        $this->code = $code;
+    }
+
     function getId_book_fk() {
         return $this->id_book_fk;
     }
@@ -40,8 +49,13 @@ class Reserve{
         $count = $result->fetch_assoc();
         //echo $count['total'];
         //die();
-        if($count['total']<COPIES){
-            return true; // You can reserve because it's available
+        
+        $numCopies = "select count(*) as total from copies where id_book_fk=".$id;
+        $copiesResult = $this->db->query($numCopies);
+        $copies->$copiesResult->fetch_assoc();
+        
+        if($count['total']<$copies['total']){
+            return true; // You can reserve
         }else{
             return false; // You can't reserve
         }
