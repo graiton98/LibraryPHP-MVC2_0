@@ -31,21 +31,22 @@ class ReserveController{
             /*echo $dateObj->format('Y-m-d');
             die();*/
             $reserveObj = new Reserve();
-            $result1 = $reserveObj->checkDates($userDateLess20, $userDate, $id);
+            $reserveObj->setId_book_fk($id);
+            $reserveObj->setId_username($_SESSION['userIdentity']->id);
+            $reserveObj->setTakenDate($userDate);
+            $reserveObj->calculateNumCopies();
             
-            $result2 = $reserveObj->checkDates($userDate, $userDateAdd20, $id);
+            $result = $reserveObj->checkDates($userDateLess20, $userDateAdd20);
             
-            if($result1 && $result2){
+            if($result){
                 
                 // Create Reserve
-                /*$reserveObj->setId_book_fk($id);
-                var_dump($_SESSION['userIdentity']);
-                die();
-                //$reserveObj->getId_username()*/
+                $reserveObj->add();
+                $_SESSION['result_reserve'] = "Reserve has been done successfully";
             }else{
-                $_SESSION['error_date_reserve'] = "Selected Date isn't available, select another one.";
-                header('Location:'.BASE_URL.'Reserve/create&id='.$id);
+                $_SESSION['result_reserve'] = "Selected Date isn't available, select another one.";
             }
+            header('Location:'.BASE_URL.'Reserve/create&id='.$id);
             
             
         }

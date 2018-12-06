@@ -6,6 +6,7 @@ class Reserve{
     private $id_username;
     private $takenDate;
     private $db;
+    private $numCopies;
     
     function __construct() {
        $this->db = Database::connect();
@@ -43,22 +44,36 @@ class Reserve{
         $this->takenDate = $takenDate;
     }
     
-    function checkDates($userDate, $userDate2, $id){
-        $sql = "select count(*) as total from reservation where id_book_fk= {$id} and takenDate between '{$userDate}' and '{$userDate2}';";
+    function calculateNumCopies(){
+        $sql = "select count(*) as total from copy where id_book_fk={$this->id_book_fk};";
         $result = $this->db->query($sql);
         $count = $result->fetch_assoc();
-        //echo $count['total'];
-        //die();
-        
-        $numCopies = "select count(*) as total from copies where id_book_fk=".$id;
-        $copiesResult = $this->db->query($numCopies);
-        $copies->$copiesResult->fetch_assoc();
-        
-        if($count['total']<$copies['total']){
-            return true; // You can reserve
-        }else{
-            return false; // You can't reserve
-        }
+        $this->numCopies = $count['total'];
+    }
+    
+    function add(){
+        $sql = "insert into reservation values(null, {$this->id_book_fk}, {$this->id_username}, '{$this->takenDate}');";
+        $this->db->query($sql);
+    }
+    
+    private function checkDateBefore($date){
+        $sql = "select count(*) as total from reservation where id_book_fk={$this->id_book_fk} and takenDate between '$date' and '{$this->takenDate}';";
+        $result = $this->db->query($sql);
+        $count = $result->fetch_assoc();
+        if($count['total'] < $this->numCopies) return true;
+        else return false;
+    }
+    private function checkDateAfter($date){
+        $sql = $sql = "select count(*) as total from reservation where id_book_fk= {$this->id_book_fk} and takenDate between '{$this->takenDate}' and '{$date}';";
+        $result = $this->db->query($sql);
+        $count = $result->fetch_assoc();
+        if($count['total'] < $this->numCopies) return true;
+        else return false;
+    }
+    
+    function checkDates($date1, $date2){
+        if($this->checkDateBefore($date1) && $this->checkDateAfter($date2)) return true;
+        return false;
     }
     
 }
