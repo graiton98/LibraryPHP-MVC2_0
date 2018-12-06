@@ -37,7 +37,21 @@ class CategoryController{
     }
     
     function edit(){
-        
+        Utils::hasPower(); // Check if session admin or librarian exists
+        if(isset($_GET)){
+            $id = $_GET['id'];
+            $category = new Category();
+            $category->setId($id);
+            if($category->checkIfExistsById()){
+                $category = $category->getOne();
+                require_once 'views/category/edit.php';
+            }else{
+               $_SESSION['edit_Result'] = "Error, there isn't a category with that id";
+               header('Location:'.BASE_URL."category/see");
+            }
+        }else{
+            header('Location:'.BASE_URL);
+        }
     }
     function delete(){
         Utils::hasPower(); // Check if session admin or librarian exists
@@ -45,7 +59,7 @@ class CategoryController{
             $id = $_GET['id'];
             $category = new Category();
             $category->setId($id);
-            if(checkIfExistsById){
+            if($category->checkIfExistsById()){
                 $category->delete();
                 $_SESSION['category_delete_result'] = "Category deleted succesfully";
                 header('Location:'.BASE_URL."category/see");

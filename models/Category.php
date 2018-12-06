@@ -56,5 +56,11 @@ class Category{
         $result = $this->db->query($sql);
     }
     
+    function getOne(){
+        $sql = "select * from categories where id={$this->id};";
+        $result = $this->db->query($sql);
+        return $result->fetch_object('Category');
+    }
+    
 }
 

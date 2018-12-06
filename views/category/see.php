@@ -3,7 +3,7 @@
     <a href="<?=BASE_URL?>category/add"><i class="fas fa-plus"></i>Add Category</a>
     <table>
       <tr>
-        <th>id</th>
+        <th>Id</th>
         <th>Category Name</th>
         <th>Edit</th>
         <th>Delete</th>
