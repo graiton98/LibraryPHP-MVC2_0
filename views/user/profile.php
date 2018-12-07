@@ -1,5 +1,5 @@
 <div class="content">
-    <form action="" method="POST">
+    <form action="<?=BASE_URL?>user/saveRegisterUpdate&id=<?=$user->id?>" method="POST">
         <div class="label-input">
             <label for="username">Username</label>
             <input type="text" name="username" required="" value="<?=$user->getUsername()?>"/>

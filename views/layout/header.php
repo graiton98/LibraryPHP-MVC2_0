@@ -39,7 +39,7 @@
                         
                     <?php else: ?>
                         <li>
-                            <a href="<?=BASE_URL?>user/profile">Edit Profile</a>
+                            <a href="<?=BASE_URL?>user/browse">Edit Profile</a>
                         </li>
 
                         <li>

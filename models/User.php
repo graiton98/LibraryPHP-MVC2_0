@@ -1,6 +1,6 @@
 <?php
 class User{
-    private $id;
+    private $id = -1;
     private $username;
     private $password;
     private $name_user;
@@ -108,11 +108,14 @@ class User{
     function checkIfUserExistsById(){
         $SQLQuery = "select * from users where id={$this->id}";
         $login = $this->db->query($SQLQuery);
-        if($login->num_rows == 1)return false;
-        return true;
+        if($login->num_rows == 1)return true; // There is an with that user
+        return false; // There isn't an user with that id
     }
     private function checkUser(){
         $SQLQuery = "select * from users where username='{$this->username}'";
+        if($this->id != -1){
+            $SQLQuery .= " where id!={$this->id}";
+        }
         $login = $this->db->query($SQLQuery);
         if($login->num_rows == 1 || !$this->username)return false;
         return true;
@@ -129,6 +132,9 @@ class User{
     
     private function checkDni(){
         $SQLQuery = "select * from users where dni='{$this->username}'";
+        if($this->id != -1){
+            $SQLQuery .= " where id!={$this->id}";
+        }
         $login = $this->db->query($SQLQuery);
         if(!$this->dni)return false;
         if(strlen($this->dni)<9 || $login->num_rows == 1) return false;
@@ -138,6 +144,9 @@ class User{
     
     private function checkEmail(){
         $SQLQuery = "select * from users where email='{$this->email}'";
+        if($this->id != -1){
+            $SQLQuery .= " where id!={$this->id}";
+        }
         $login = $this->db->query($SQLQuery);
         if(!$this->email)return false;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) return false;
@@ -147,13 +156,16 @@ class User{
     
     private function checkPhone_number(){
         $SQLQuery = "select * from users where phone_number='{$this->phone_number}'";
+        if($this->id != -1){
+            $SQLQuery .= " where id!={$this->id}";
+        }
         $login = $this->db->query($SQLQuery);
         if($login->num_rows == 1)return false;
         if(strlen(strval($this->phone_number)) != 9)return false;
         return true;
     }
     
-    function checkData(){
+    function checkData($id){
         // Arrays of Errors
         $errors = array();
         
@@ -165,9 +177,13 @@ class User{
 
         return $errors;
     }
-    
     function save(){
-        $sqlQuery = "insert into users values(null, '$this->username', AES_ENCRYPT('{$this->getPassword()}', 'secreta'), '{$this->name_user}', '{$this->first_surname}', '{$this->dni}', '{$this->email}', {$this->phone_number}, {$this->type_of_user})";
+        if($this->id != 1){
+            $sqlQuery = "update users set ";
+        }else{
+            $sqlQuery = "insert into users values(null, '$this->username', AES_ENCRYPT('{$this->getPassword()}', 'secreta'), '{$this->name_user}', '{$this->first_surname}', '{$this->dni}', '{$this->email}', {$this->phone_number}, {$this->type_of_user})";
+
+        }
         $save = $this->db->query($sqlQuery);
         if($save){
             return true;
@@ -175,7 +191,6 @@ class User{
         return false;
         
     }
-
     function getAll(){
         $sql = "select * from users order by id";
         return $this->db->query($sql);
