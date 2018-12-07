@@ -39,5 +39,11 @@ class Utils{
         $type = new Typeofuser();
         return $type->getAll($typeUser);
     }
+    static function getOneBook($id){
+        require_once 'models/Book.php';
+        $book = new Book();
+        $book->setId($id);
+        return $book->getOne();
+    }
 }
 

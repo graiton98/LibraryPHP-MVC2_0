@@ -77,5 +77,10 @@ class Book{
         if(!$result)return false;
         else return $result->fetch_object();
     }
+    function getOne(){
+        $sql = "select * from books where id={$this->id};";
+        $result = $this->db->query($sql);
+        return $result->fetch_object('Book');
+    }
 }
 

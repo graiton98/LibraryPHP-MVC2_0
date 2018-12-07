@@ -39,7 +39,6 @@ class ReserveController{
             $result = $reserveObj->checkDates($userDateLess20, $userDateAdd20);
             
             if($result){
-                
                 // Create Reserve
                 $reserveObj->add();
                 $_SESSION['result_reserve'] = "Reserve has been done successfully";
