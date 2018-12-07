@@ -184,4 +184,9 @@ class User{
         $sql = "delete from users where id={$this->id};";
         $this->db->query($sql);
     }
+    function getOne(){
+        $sql = "select * from users where id={$this->id};";
+        $result = $this->db->query($sql);
+        return $result->fetch_object('User');
+    }
 }

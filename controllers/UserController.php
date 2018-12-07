@@ -131,4 +131,18 @@ class UserController{
             header('Location:'.BASE_URL);
         }
     }
+    function browse(){
+        if(isset($_GET)){
+            $idGet = $_GET['id'];
+            if($_SESSION['userIdentity']->id != $idGet){
+                Utils::hasPower(); // Check if session admin or librarian exists
+            }
+            $user = new User();
+            $user->setId($idGet);
+            $user = $user->getOne();
+            require_once 'views/user/profile.php';
+        }else{
+            header('Location:'.BASE_URL);
+        }
+    }
 }
