@@ -3,8 +3,7 @@
     <h1>REGISTER ERROR</h1>
     <?php Utils::deleteSession('register') ?>
 <?php endif; ?>
-<form class="form-login-register" action="<?=BASE_URL?>user/saveRegister" method="POST">
-                    
+<form class="form-login-register" action="<?=BASE_URL?>user/saveRegister" method="POST">             
     <div class="label-input">
         <label for="username">Username</label>
         <input type="text" name="username" required="" placeholder="Enter Username" onfocus="this.placeholder = ''" onblur="this.placeholder='Enter Username'"/>
@@ -33,8 +32,15 @@
         <label for="phone_number">Phone Number</label>
         <input type="number" name="phone_number" required="" placeholder="Enter your phone number" onfocus="this.placeholder = ''" onblur="this.placeholder='Enter your phone number'"/>
     </div>
-    <div class="cancel-submit">
-        <input type="submit" value="Register"  />
-        <button onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+    <div class="label-input">
+        <?php if(isset($_SESSION['admin'])):?>
+            <?php $types = Utils::getTypesOfUser($_SESSION['userIdentity']->type_of_user)?>
+            <select name="type_of_user">
+                <?php while($type = $types->fetch_object()): ?>
+                    <option value="<?=$type->id?>"><?=$type->name?></option>
+                <?php endwhile; ?>
+            </select>
+        <?php endif; ?>
     </div>
+    <input type="submit" value="Register" name="register" />
  </form>

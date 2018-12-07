@@ -25,7 +25,6 @@ class Utils{
         if(isset($_SESSION[$name_session])){
             unset($_SESSION[$name_session]);
         }
-        
     }
     static function showCategories(){
         require_once 'models/Category.php';
@@ -34,6 +33,11 @@ class Utils{
         $categories = $category->getAll();
         
         return $categories;
+    }
+    static function getTypesOfUser($typeUser){
+        require_once 'models/Typeofuser.php';
+        $type = new Typeofuser();
+        return $type->getAll($typeUser);
     }
 }
 

@@ -105,7 +105,12 @@ class User{
         }
         return $result;
     }
-    
+    function checkIfUserExistsById(){
+        $SQLQuery = "select * from users where id={$this->id}";
+        $login = $this->db->query($SQLQuery);
+        if($login->num_rows == 1)return false;
+        return true;
+    }
     private function checkUser(){
         $SQLQuery = "select * from users where username='{$this->username}'";
         $login = $this->db->query($SQLQuery);
@@ -171,9 +176,12 @@ class User{
         
     }
 
-    
+    function getAll(){
+        $sql = "select * from users order by id";
+        return $this->db->query($sql);
+    }
+    function delete(){
+        $sql = "delete from users where id={$this->id};";
+        $this->db->query($sql);
+    }
 }
-
-
-
-

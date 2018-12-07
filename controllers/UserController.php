@@ -5,11 +5,9 @@ class UserController{
     public function index(){
         echo "User Controller, Index Action";
     }
-    
     function login(){
         require_once 'views/user/login.php';
     }
-    
     function saveLogin(){
         if(isset($_POST)){
 
@@ -37,8 +35,6 @@ class UserController{
         if(isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
         else header("Location:".BASE_URL."user/login");
     }
-    
-    
     public function logout(){
         
         if(isset($_SESSION['userIdentity'])){
@@ -53,15 +49,13 @@ class UserController{
         
         header("Location:".BASE_URL);
     }
-    
     function register(){
         require_once 'views/user/register.php';
     }
-    
     function saveRegister(){
         if(isset($_POST)){
             //echo '<pre>' . var_export($_POST, true) . '</pre>';
-            
+
             // Obtain data from form
             $username = $_POST['username'];
             $password = $_POST['password'];
@@ -71,8 +65,8 @@ class UserController{
             $email = $_POST['email'] ;
             $phone_number = $_POST['phone_number'];
             $type_of_user = isset($_POST['type_of_user']) ? $_POST['type_of_user'] : 1;
-            
-            
+
+
             // Create user using form data
             $user = new User();
             $user->setUsername($username);
@@ -83,10 +77,10 @@ class UserController{
             $user->setEmail($email);
             $user->setPhone_number($phone_number);
             $user->setType_of_user($type_of_user);
-            
+
             // Errors
             $errors = array();
-            
+
             $errors = $user->checkData();
             /*echo '<pre>' . var_export($errors, true) . '</pre>';
             echo count($errors);
@@ -95,11 +89,11 @@ class UserController{
                 /*echo '<pre>' . var_export($errors, true) . '</pre>';
                 die();*/
                 $save = $user->save();
-                
-                
+
+
                 if($save){
                     $_SESSION['register'] = "completed";
-                    
+
                 }else{
                     $_SESSION['register'] = "failed";
                 }
@@ -114,49 +108,27 @@ class UserController{
         if($_SESSION['register'] == "completed")header("Location:".BASE_URL);
         else header("Location:".BASE_URL."user/register");
     }
-    
-    /*public function register(){
-        if(isset($_POST)){
-            $username = isset($_POST['username']) ? $_POST['username'] : false;
-            $password = isset($_POST['password']) ? $_POST['password'] : false;
-            $name_user = isset($_POST['name_user']) ? $_POST['name_user'] : false;
-            $first_surname = isset($_POST['first_surname']) ? $_POST['first_surname'] : false;
-            $dni = isset($_POST['dni']) ? $_POST['dni'] : false;
-            $email = isset($_POST['email']) ? $_POST['email'] : false;
-            $phone_number = isset($_POST['phone_number']) ? $_POST['phone_number'] : false;
-            $type_of_user = isset($_POST['type_of_user']) ? $_POST['type_of_user'] : 0;
-
-            
-            
+    function seeAll(){
+        Utils::hasPower(); // Check if session admin or librarian exists
+        $user = new User();
+        $users = $user->getAll();
+        require_once 'views/user/all.php';
+    }
+    function delete(){
+        Utils::hasPower(); // Check if session admin or librarian exists
+        if(isset($_GET)){
             $user = new User();
-            $user->setUsername($username);
-            $user->setPassword($password);
-            $user->setName_user($name_user);
-            $user->setFirst_surname($first_surname);
-            $user->setDni($dni);
-            $user->setEmail($email);
-            $user->setPhone_number($phone_number);
-            $user->setType_of_user($type_of_user);
-            
-            // Errors
-            $errors = array();
-            
-            $errors = $user->checkData();
-            
-            if(count($errors) == 0){
-                $save = $user->save();
-                if($save){
-                    $_SESSION['register'] = "completed";
-                }else{
-                    $_SESSION['register'] = "failed";
-                }
+            $user->setId($_GET['id']);
+            if($user->checkIfUserExistsById()){
+                $user->delete();
+                $_SESSION['user_result'] = "User deleted succesfully";
+                header('Location:'.BASE_URL.'user/seeAll');
             }else{
-                $_SESSION['register'] = "failed";
+                $_SESSION['user_result'] = "User selected doesn't exist";
+                header('Location:'.BASE_URL);
             }
         }else{
-            $_SESSION['register'] = "failed";
+            header('Location:'.BASE_URL);
         }
-        header("Location:".BASE_URL);
-    }*/
+    }
 }
-

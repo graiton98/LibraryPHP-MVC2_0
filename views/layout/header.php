@@ -22,7 +22,7 @@
     </head>
     <body>
         <header>
-            <div class="logo">Feather</div>
+            <div class="logo"><a href="<?=BASE_URL?>">Feather</a></div>
             
             <nav>
                 <ul>
@@ -51,7 +51,7 @@
                                 <a href="<?=BASE_URL?>category/see">Manage Categories</a>
                             </li>
                             <li>
-                                <a href="#">Manage Users</a>
+                                <a href="<?=BASE_URL?>user/seeAll">Manage Users</a>
                             </li>
                         <?php endif; ?>
                             <li>

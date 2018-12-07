@@ -105,10 +105,6 @@ create table Borrow(
     insert into typeofuser values(null, 'librarian');
     insert into typeofuser values(null, 'admin');
 
-    
-    
-
-
     Categories
     insert into categories values(null, 'Science');
     insert into categories values(null, 'Literature');
