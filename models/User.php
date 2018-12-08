@@ -114,7 +114,7 @@ class User{
     private function checkUser(){
         $SQLQuery = "select * from users where username='{$this->username}'";
         if($this->id != -1){
-            $SQLQuery .= " where id!={$this->id}";
+            $SQLQuery .= " and id!={$this->id}";
         }
         $login = $this->db->query($SQLQuery);
         if($login->num_rows == 1 || !$this->username)return false;
@@ -133,7 +133,7 @@ class User{
     private function checkDni(){
         $SQLQuery = "select * from users where dni='{$this->username}'";
         if($this->id != -1){
-            $SQLQuery .= " where id!={$this->id}";
+            $SQLQuery .= " and id!={$this->id}";
         }
         $login = $this->db->query($SQLQuery);
         if(!$this->dni)return false;
@@ -145,7 +145,7 @@ class User{
     private function checkEmail(){
         $SQLQuery = "select * from users where email='{$this->email}'";
         if($this->id != -1){
-            $SQLQuery .= " where id!={$this->id}";
+            $SQLQuery .= " and id!={$this->id}";
         }
         $login = $this->db->query($SQLQuery);
         if(!$this->email)return false;
@@ -157,7 +157,7 @@ class User{
     private function checkPhone_number(){
         $SQLQuery = "select * from users where phone_number='{$this->phone_number}'";
         if($this->id != -1){
-            $SQLQuery .= " where id!={$this->id}";
+            $SQLQuery .= " and id!={$this->id}";
         }
         $login = $this->db->query($SQLQuery);
         if($login->num_rows == 1)return false;
@@ -165,7 +165,7 @@ class User{
         return true;
     }
     
-    function checkData($id){
+    function checkData(){
         // Arrays of Errors
         $errors = array();
         
@@ -178,11 +178,10 @@ class User{
         return $errors;
     }
     function save(){
-        if($this->id != 1){
-            $sqlQuery = "update users set ";
+        if($this->id != -1){
+            $sqlQuery = "update users set username='{$this->username}', name_user='{$this->name_user}', first_surname='{$this->first_surname}', dni='{$this->dni}', email='{$this->email}', phone_number={$this->phone_number}, type_of_user={$this->type_of_user} where id={$this->id};";
         }else{
             $sqlQuery = "insert into users values(null, '$this->username', AES_ENCRYPT('{$this->getPassword()}', 'secreta'), '{$this->name_user}', '{$this->first_surname}', '{$this->dni}', '{$this->email}', {$this->phone_number}, {$this->type_of_user})";
-
         }
         $save = $this->db->query($sqlQuery);
         if($save){

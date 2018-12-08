@@ -3,8 +3,8 @@
 class Utils{
     
     static function isLogin(){
-        if(!isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
-        else return true;
+        if(isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
+        else return false;
     }
     static function isAdmin(){
         if(!isset($_SESSION['admin'])) header ('Location:'.BASE_URL);

@@ -6,6 +6,7 @@ class UserController{
         echo "User Controller, Index Action";
     }
     function login(){
+        Utils::isLogin();
         require_once 'views/user/login.php';
     }
     function saveLogin(){
@@ -49,12 +50,14 @@ class UserController{
         header("Location:".BASE_URL);
     }
     function register(){
+        Utils::isLogin();
         require_once 'views/user/register.php';
     }
-    function getUser($username, $password, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user){
+    
+    function getUser($username, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user, $password = -1){
         $user = new User();
         $user->setUsername($username);
-        $user->setPassword($password);
+        if($password != -1) $user->setPassword($password);
         $user->setName_user($name_user);
         $user->setFirst_surname($first_surname);
         $user->setDni($dni);
@@ -77,7 +80,7 @@ class UserController{
             $phone_number = $_POST['phone_number'];
             $type_of_user = isset($_POST['type_of_user']) ? $_POST['type_of_user'] : 1;
             
-            $user = $this->getUser($username, $password, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user);
+            $user = $this->getUser($username,$name_user, $first_surname, $dni, $email, $phone_number, $type_of_user, $password);
 
             // Errors
             $errors = array();
@@ -150,7 +153,7 @@ class UserController{
             header('Location:'.BASE_URL);
         }
     }
-    function update(){
+    /*function update(){
         if(isset($_POST)){
             // Obtain data from form
             $username = $_POST['username'];
@@ -169,10 +172,10 @@ class UserController{
             $errors = $user->checkData();
             /*echo '<pre>' . var_export($errors, true) . '</pre>';
             echo count($errors);
-            die();*/
+            die();
             if(count($errors) == 0){
                 /*echo '<pre>' . var_export($errors, true) . '</pre>';
-                die();*/
+                die();
                 $save = $user->update();
 
                 if($save){
@@ -183,27 +186,24 @@ class UserController{
                 }
             }else{
                 /*echo '<pre>' . var_export($errors, true) . '</pre>';
-                die();*/
+                die();
                 $_SESSION['register'] = "failed";
             }
-            
         }
-    }
-    function saveRegisterUpdate(){
+    }*/
+    function saveUpdate(){
         if(isset($_POST)){
-            
             // Get Post Data
             $username = $_POST['username'];
-            $password = $_POST['password'];
+            //$password = $_POST['password'];
             $name_user = $_POST['name_user'];
             $first_surname = $_POST['first_surname'];
             $dni = $_POST['dni'];
             $email = $_POST['email'] ;
             $phone_number = $_POST['phone_number'];
             $type_of_user = isset($_POST['type_of_user']) ? $_POST['type_of_user'] : 1;
-            
-            $user = $this->getUser($username, $password, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user);
-
+            //$user = $this->getUser($username, $password, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user);
+            $user = $this->getUser($username, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user);
             if(isset($_GET['id'])){
                 $user->setId($_GET['id']);
             }
@@ -216,21 +216,23 @@ class UserController{
                 /*echo '<pre>' . var_export($errors, true) . '</pre>';
                 die();*/
                 $save = $user->save();
-
-
                 if($save){
-                    $_SESSION['register'] = "completed";
+                    $_SESSION['update'] = "completed";
 
                 }else{
-                    $_SESSION['register'] = "failed";
+                    $_SESSION['update'] = "failed";
                 }
             }else{
-                /*echo '<pre>' . var_export($errors, true) . '</pre>';
-                die();*/
-                $_SESSION['register'] = "failed";
-            } 
-        }else{
+                $_SESSION['update'] = "failed";
+            }
+            if(isset($_GET['id'])){
+                header('Location:'.BASE_URL.'user/browse&id='.$user->getId());
+            }else{
+                header('Location:'.BASE_URL.'user/browse');
+            }
             
+        }else{
+            header('Location:'.BASE_URL);
         }
     }
 }
