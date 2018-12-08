@@ -53,6 +53,9 @@
                             <li>
                                 <a href="<?=BASE_URL?>user/seeAll">Manage Users</a>
                             </li>
+                            <li>
+                                <a href="<?=BASE_URL?>book/seeAll">Manage Books</a>
+                            </li>
                         <?php endif; ?>
                             <li>
                                 <a href="user/logout">Logout</a>

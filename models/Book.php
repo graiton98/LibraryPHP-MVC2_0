@@ -82,5 +82,19 @@ class Book{
         $result = $this->db->query($sql);
         return $result->fetch_object('Book');
     }
+    function getAll(){
+        $sql = "select * from books";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+    function checkIfBookExistsById(){
+        $sql = "select * from books where id={$this->id}";
+        $result = $this->db->query($sql);
+        return $result;
+    }
+    function delete(){
+        $sql = "delete from books where id={$this->id}";
+        $this->db->query($sql);
+    }
 }
 

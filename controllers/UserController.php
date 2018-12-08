@@ -115,7 +115,7 @@ class UserController{
     function seeAll(){
         Utils::hasPower(); // Check if session admin or librarian exists
         $user = new User();
-        $users = $user->getAll();
+        $users = $user->getAll($_SESSION['userIdentity']->type_of_user);
         require_once 'views/user/all.php';
     }
     function delete(){

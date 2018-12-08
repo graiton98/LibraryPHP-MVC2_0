@@ -190,8 +190,8 @@ class User{
         return false;
         
     }
-    function getAll(){
-        $sql = "select * from users order by id";
+    function getAll($type){
+        $sql = "select * from users where type_of_user < $type order by id";
         return $this->db->query($sql);
     }
     function delete(){
