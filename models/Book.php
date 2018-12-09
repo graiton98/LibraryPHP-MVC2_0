@@ -1,7 +1,7 @@
 <?php
 
 class Book{
-    private $id;
+    private $id = -1;
     private $isbn;
     private $name_book;
     private $category_id;
@@ -108,6 +108,7 @@ class Book{
     
     function checkIsbn(){
         $sql = "select * from books where isbn='{$this->isbn}'";
+        if($this->id != -1) $sql .= " and id!={$this->id}";
         $result =  $this->db->query($sql);
         if($result->num_rows == 1)return false;
         return true;
@@ -119,7 +120,8 @@ class Book{
         return $errors;
     }
     function save(){
-        $sql = "insert into books values (null, '{$this->isbn}', '{$this->name_book}', {$this->category_id},{$this->author_id}, '{$this->description}', {$this->outstanding}, '{$this->extImage}');";
+        if($this->id != -1) $sql = "update books set isbn='{$this->isbn}', name_book='{$this->name_book}', category_id={$this->category_id}, author_id={$this->author_id}, description='{$this->description}', oustanding={$this->outstanding}, extImage='{$this->extImage}' where id={$this->id}";
+        else $sql = "insert into books values (null, '{$this->isbn}', '{$this->name_book}', {$this->category_id},{$this->author_id}, '{$this->description}', {$this->outstanding}, '{$this->extImage}');";
         $this->db->query($sql);
     }
     function obtainData(){

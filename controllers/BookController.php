@@ -82,19 +82,30 @@ class BookController {
                $book->setExtImage($extImage);
                
             }
+            if($_GET['id']) $book->setId($_GET['id']);
             $check = $book->checkData();
             if(count($check) == 0){
                 $book->save();
                 move_uploaded_file($file['tmp_name'], 'assets/img/'.$filename.'.'.$extImage); 
-                $_SESSION['book'] = "Book added succesfully";
+                $_SESSION['book'] = "Succesfully";
             }else{
-                $_SESSION['book_error'] = "Error";
+                $_SESSION['book'] = "Error";
             }
        }else{
-           $_SESSION['book_error'] = "Error";
+           $_SESSION['book'] = "Error";
        }
-       if(isset($_SESSION['book'])) header('Location:'.BASE_URL.'book/seeAll');
-       else header('Location:'.BASE_URL.'book/new');
-   }   
+       header('Location:'.BASE_URL.'book/seeAll');
+   }
+   function browse(){
+       Utils::hasPower();
+       if(isset($_GET['id'])){
+           $book = new Book();
+           $book->setId($_GET['id']);
+           $book->obtainData();
+           require_once 'views/book/new.php';
+       }else{
+           header('Location:'.BASE_URL.'book/seeAll');
+       }
+   }
 }
 

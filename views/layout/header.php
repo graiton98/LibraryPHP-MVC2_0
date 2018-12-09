@@ -26,9 +26,6 @@
             
             <nav>
                 <ul>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
                     <?php if(!isset($_SESSION['userIdentity'])): ?>
                         <li>
                             <a href="<?=BASE_URL?>user/login">Login</a>
