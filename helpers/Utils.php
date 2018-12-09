@@ -45,5 +45,10 @@ class Utils{
         $book->setId($id);
         return $book->getOne();
     }
+    static function getAuthors(){
+        require_once 'models/Author.php';
+        $author= new Author();
+        return $author->getAll();
+    }
 }
 

@@ -8,6 +8,7 @@ class Book{
     private $author_id;
     private $description;
     private $outstanding;
+    private $extImage;
     private $db;
     
     public function __construct() {
@@ -69,7 +70,15 @@ class Book{
     function setOutstanding($outstanding) {
         $this->outstanding = $outstanding;
     }
+    function getExtImage() {
+        return $this->extImage;
+    }
 
+    function setExtImage($extImage) {
+        $this->extImage = $extImage;
+    }
+
+    
     function getInfo(){
         $sql = "select * from books where id = {$this->id}";
         $result = $this->db->query($sql);
@@ -95,6 +104,35 @@ class Book{
     function delete(){
         $sql = "delete from books where id={$this->id}";
         $this->db->query($sql);
+    }
+    
+    function checkIsbn(){
+        $sql = "select * from books where isbn='{$this->isbn}'";
+        $result =  $this->db->query($sql);
+        if($result->num_rows == 1)return false;
+        return true;
+    }
+    
+    function checkData(){
+        $errors = array();
+        if(!$this->checkIsbn())$errors['isbn'] = "There is a book with that isbn";
+        return $errors;
+    }
+    function save(){
+        $sql = "insert into books values (null, '{$this->isbn}', '{$this->name_book}', {$this->category_id},{$this->author_id}, '{$this->description}', {$this->outstanding}, '{$this->extImage}');";
+        $this->db->query($sql);
+    }
+    function obtainData(){
+        $sql = "select * from books where id={$this->id}";
+        $result = $this->db->query($sql);
+        $obj = $result->fetch_object();
+        $this->isbn = $obj->isbn;
+        $this->name_book = $obj->name_book;
+        $this->category_id = $obj->category_id;
+        $this->author_id = $obj->author_id;
+        $this->description = $obj->description;
+        $this->outstanding = $obj->outstanding;
+        $this->extImage = $obj->extImage;
     }
 }
 

@@ -63,6 +63,7 @@ create table Books(
     author_id       int(255)    not null,
     description     text        not null,
     outstanding     tinyint default 0,
+    extImage        varchar(5)  not null,
     CONSTRAINT uq_isbn       UNIQUE(isbn),   
     CONSTRAINT `fk_books_authors` FOREIGN KEY (`author_id`) REFERENCES `Authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `fk_books_category` FOREIGN KEY (`category_id`) REFERENCES `Categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE 

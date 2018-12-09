@@ -1,7 +1,13 @@
 <div class="content">
     <h1>List of Book</h1>
     <!-- Ensenyar els errors-->
-    <a href="<?=BASE_URL?>book/new"><i class="fas fa-plus"></i>Add Book</a>
+    <?php 
+        if(isset($_SESSION['book'])){
+            echo $_SESSION['book']; 
+            Utils::deleteSession('book');     
+        } 
+    ?>
+    <a href="<?=BASE_URL?>book/add"><i class="fas fa-plus"></i>Add Book</a>
     <table>
         <tr>
             <th>id</th>
