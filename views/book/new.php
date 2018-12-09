@@ -60,9 +60,9 @@
             <?php endif; ?>
         </div>
         <div class="label-input">
-            <label for="img">Cover Page</label>
             <?php if(isset($book) && is_object($book)): ?>
-            <input type="file" name="img" value="<?=isset($book) && is_object($book) ? 'assets/img/'.$book->getIsbn().'.'.$book->getExtImage() : ''?>" accept="image/*"/>
+            <label for="img">Cover Page <?=$book->getIsbn().'.'.$book->getExtImage()?> Selected before Change</label>
+            <input type="file" name="img" value="<?='assets/img/'.$book->getIsbn().'.'.$book->getExtImage()?>" accept="image/*"/>
             <?php else: ?>
             <input type="file" name="img" required="" accept="image/*"/>
             <?php endif; ?>

@@ -1,9 +1,9 @@
 <div class="content">
     <h1>List of Book</h1>
-    <!-- Ensenyar els errors-->
+    <!-- Si es susccesfully pintar verd sino vermell-->
     <?php 
         if(isset($_SESSION['book'])){
-            echo $_SESSION['book']; 
+            echo "<p>".$_SESSION['book']."</p>"; 
             Utils::deleteSession('book');     
         } 
     ?>
@@ -29,7 +29,7 @@
                    <?=$book->name_book?>
                 </td>
                  <td>
-                   <a href="<?=BASE_URL?>book/copies&id=<?=$book->id?>"><i class="fas fa-copy"></i></a>
+                   <a href="<?=BASE_URL?>copy/seeAll&id=<?=$book->id?>"><i class="fas fa-copy"></i></a>
                 </td>
                 <td>
                     <a href="<?=BASE_URL?>book/browse&id=<?=$book->id?>"><i class="fas fa-pencil-alt"></i></a>
