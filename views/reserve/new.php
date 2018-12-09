@@ -19,7 +19,18 @@
             <label for="takenDate">Taken Date</label>
             <input type="text" id="datepicker" name="takenDate" required="" autocomplete="off"  />
         </div>
-        
+        <?php if(isset($_SESSION['admin']) || isset($_SESSION['librarian'])): ?>
+        <div class="label-input">
+           <select name="user">
+            <option disabled selected value=""></option>
+            <?php while($user = $users->fetch_object()): ?>
+                <option value="<?=$user->id?>">
+                    <?=$user->username?>
+                </option>
+            <?php endwhile; ?>
+            </select>
+        </div>
+        <?php endif;?>
         <input type="submit" value="submit" name="Reserve" />
     </form>
 <?php else: ?>

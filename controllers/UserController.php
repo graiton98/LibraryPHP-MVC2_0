@@ -1,5 +1,7 @@
 <?php
 require_once 'models/User.php';
+require_once 'models/Reserve.php';
+require_once 'models/Book.php';
 class UserController{
     
     public function index(){
@@ -234,5 +236,18 @@ class UserController{
         }else{
             header('Location:'.BASE_URL);
         }
+    }
+    function reservationBorrow(){
+        Utils::hasPower();
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+            $reserve = new Reserve();
+            $reserve->setId_username($id);
+            $reserves = $reserve->getAllReservesByIdUser();
+            require_once 'views/user/reservationBorrow.php';
+        }else{
+            header('Location:'.BASE_URL);
+        }
+        
     }
 }

@@ -1,5 +1,5 @@
 <div class="content">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -24,7 +24,7 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div>-->
     <?php $categories = Utils::showCategories(); ?>
     <?php if($categories && $categories->num_rows>0):?>
         <div id="categories">

@@ -75,6 +75,11 @@ class Reserve{
         if($this->checkDateBefore($date1) && $this->checkDateAfter($date2)) return true;
         return false;
     }
+    function getAllReservesByIdUser(){
+        $sql = "select * from reservation where id_username={$this->id_username}";
+        $result = $this->db->query($sql);
+        return $result;
+    }
     
 }
 

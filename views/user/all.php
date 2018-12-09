@@ -9,6 +9,7 @@
             <th>Surname</th>
             <th>Browse</th>
             <th>Delete</th>
+            <th>Reservations & Borrows</th>
         </tr>
         <?php while($user = $users->fetch_object()): ?>
             <tr>
@@ -29,6 +30,9 @@
                 </td>
                 <td>
                     <a href="<?=BASE_URL?>user/delete&id=<?=$user->id?>"><i class="fas fa-times"></i></a>
+                </td>
+                <td>
+                    <a href="<?=BASE_URL?>user/reservationBorrow&id=<?=$user->id?>"><i class="fas fa-paper-plane"></i></a>
                 </td>
             </tr>
         <?php endwhile; ?>

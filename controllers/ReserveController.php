@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Reserve.php';
+require_once 'models/User.php';
 class ReserveController{
     function index(){
         echo "Reserve Controller Index Action";
@@ -7,10 +8,12 @@ class ReserveController{
     function create(){
         Utils::isLogin();
         if(isset($_GET)){
-            
             $id = $_GET['id'];
-            
+            $user = new User();
+            $users = $user->getAll($_SESSION['userIdentity']->type_of_user);
             require_once 'views/reserve/new.php';
+        }else{
+            header('Location:'.BASE_URL);
         }
     }
     function checkDates(){
@@ -32,7 +35,8 @@ class ReserveController{
             die();*/
             $reserveObj = new Reserve();
             $reserveObj->setId_book_fk($id);
-            $reserveObj->setId_username($_SESSION['userIdentity']->id);
+            if(isset($_POST['user']) && $_POST['user'] == "") $reserveObj->setId_username($_SESSION['userIdentity']->id);
+            elseif(isset($_POST['user']) && $_POST['user'] != "") $reserveObj->setId_username($_POST['user']);
             $reserveObj->setTakenDate($userDate);
             $reserveObj->calculateNumCopies();
             
