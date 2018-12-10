@@ -136,5 +136,10 @@ class Book{
         $this->outstanding = $obj->outstanding;
         $this->extImage = $obj->extImage;
     }
+    function getAllByCategory(){
+        $sql = "select * from books where category_id={$this->category_id};";
+        $result = $this->db->query($sql);
+        return $result;
+    }
 }
 

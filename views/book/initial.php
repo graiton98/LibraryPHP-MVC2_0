@@ -33,7 +33,7 @@
             <h1>Categories</h1>
             <div class="categories-buttons">
                 <?php while($cat = $categories->fetch_object()): ?>
-                <a href="#" class="btn text-white" style="background-color: #1070ff"><?=$cat->name_category?></a>
+                <a href="<?=BASE_URL?>category/seeBooks&category=<?=$cat->id?>" class="btn text-white" style="background-color: #1070ff"><?=$cat->name_category?></a>
                 <?php endwhile; ?>
             </div>
             
@@ -64,6 +64,5 @@
             </div>
             <?php endwhile; ?>
         </div>
-
     </div>
 </div>

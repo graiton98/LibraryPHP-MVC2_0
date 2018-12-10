@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Category.php';
+require_once 'models/Book.php';
 class CategoryController{
     function see(){
         Utils::hasPower(); // Check if session admin or librarian exists
@@ -67,7 +68,7 @@ class CategoryController{
             header('Location:'.BASE_URL);
         }
     }
-        function save(){
+    function save(){
         Utils::hasPower(); // Check if session admin or librarian exists
         if(isset($_GET)){
             if(isset($_POST)){
@@ -89,7 +90,19 @@ class CategoryController{
         }else{
             header('Location:'.BASE_URL);
         }
-        
+    }
+    function seeBooks(){
+        if($_GET['category']){
+            $book = new Book();
+            $book->setCategory_id($_GET['category']);
+            $books = $book->getAllByCategory();
+            $category = new Category();
+            $category->setId($_GET['category']);
+            $category = $category->getOne();
+            require_once 'views/category/principal.php';
+        }else{
+            header('Location:'.BASE_URL);
+        }
     }
 }
 
