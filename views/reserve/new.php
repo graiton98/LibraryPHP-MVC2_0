@@ -18,7 +18,7 @@
         <?php endif; ?>
         <form action="<?=BASE_URL?>reserve/checkDates" method="POST">
             <div class="form-group">
-                <label for="id">Id</label>
+                <label for="id">Book Id</label>
                 <?php
                     $book = Utils::getOneBook($_GET['id']);
                 ?>
