@@ -63,7 +63,7 @@
         <div class="form-group">
             <?php if(isset($book) && is_object($book)): ?>
             <label for="img">Cover Page <?=$book->getIsbn().'.'.$book->getExtImage()?> Selected before Change</label>
-            <input ype="file" name="img" value="<?='assets/img/'.$book->getIsbn().'.'.$book->getExtImage()?>" accept="image/*"/>
+            <input type="file" name="img" value="<?='assets/img/'.$book->getIsbn().'.'.$book->getExtImage()?>" accept="image/*"/>
             <?php else: ?>
             <label for="img">Cover Page <span class="text-danger font-weight-bold">*</span></label>
             <input type="file" name="img" required="" accept="image/*"/>
