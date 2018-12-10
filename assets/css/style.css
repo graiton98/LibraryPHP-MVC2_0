@@ -19,6 +19,9 @@ ul {
   margin: 0;
   padding: 0; }
 
+.btn {
+  margin-bottom: 10px; }
+
 .button {
   text-decoration: none;
   padding: 0.5rem;
@@ -31,53 +34,71 @@ ul {
   .button:hover {
     cursor: pointer; }
 
+.center {
+  margin: 0 20rem !important; }
+
 header {
+  background-color: #3d464d; }
+
+footer {
+  background-color: #3d464d;
+  color: white;
+  font-weight: bold;
+  text-align: center; }
+
+.header {
   display: flex !important;
   justify-content: space-around;
   align-items: center;
-  height: 5rem; }
-  header nav ul {
+  min-height: 5rem; }
+  .header .logo {
+    color: white; }
+    .header .logo i {
+      margin: 0.5rem; }
+  .header nav ul {
     display: flex; }
-  header .search-header form {
+  .header nav ul > * {
+    margin: 1rem; }
+  .header .search-header form {
     display: flex;
     flex-direction: row; }
-    header .search-header form input {
+    .header .search-header form input {
       border: none;
       border-bottom: 2px solid #7D7D7D; }
-    header .search-header form button {
+    .header .search-header form button {
       border: 1px solid blue;
       background: blue;
       color: white; }
-  header .login-register-buttons {
+  .header .login-register-buttons {
     display: flex;
     justify-content: space-between; }
-    header .login-register-buttons .login-button {
+    .header .login-register-buttons .login-button {
       background-color: #3686E6;
       margin-right: 0.5rem; }
-    header .login-register-buttons .register-button {
+    .header .login-register-buttons .register-button {
       background-color: #3ACACE; }
-  header nav ul li {
+  .header nav ul li {
     position: relative; }
-    header nav ul li ul.dropdown {
+    .header nav ul li ul.dropdown {
       display: none;
       position: absolute; }
-      header nav ul li ul.dropdown li a {
+      .header nav ul li ul.dropdown li a {
         padding: 0.5rem;
         display: block; }
-        header nav ul li ul.dropdown li a:hover {
+        .header nav ul li ul.dropdown li a:hover {
           background-color: blue;
           color: white; }
-    header nav ul li:hover ul.dropdown {
+    .header nav ul li:hover ul.dropdown {
       display: flex;
       flex-direction: column; }
-  header .close {
+  .header .close {
     align-self: flex-end;
     font-size: 35px;
     font-weight: bold; }
-  header .close:hover, header .close:focus {
+  .header .close:hover, .header .close:focus {
     color: red;
     cursor: pointer; }
-  header .form-login-register {
+  .header .form-login-register {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -86,16 +107,16 @@ header {
     width: 80%;
     height: 80%;
     padding: 1rem; }
-    header .form-login-register label {
+    .header .form-login-register label {
       font-weight: bold; }
-    header .form-login-register input[type=text], header .form-login-register input[type=password], header .form-login-register input[type=number], header .form-login-register input[type=email] {
+    .header .form-login-register input[type=text], .header .form-login-register input[type=password], .header .form-login-register input[type=number], .header .form-login-register input[type=email] {
       padding: 12px 20px;
       margin: 8px 0;
       border: 1px solid #ccc; }
-  header .label-input {
+  .header .label-input {
     display: flex;
     flex-direction: column; }
-  header .modal {
+  .header .modal {
     display: none;
     z-index: 1;
     position: fixed;
@@ -106,7 +127,7 @@ header {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px; }
-  header .cancelbtn {
+  .header .cancelbtn {
     width: auto;
     background-color: #f44336;
     color: white;
@@ -114,31 +135,33 @@ header {
     cursor: pointer; }
 
 #main-container {
-  display: flex; }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
   #main-container .picture-viewers {
     min-height: 20rem;
     background-color: #7D7D7D; }
-  #main-container #categories {
-    margin: 0 20%; }
-    #main-container #categories h1 {
-      text-align: center; }
-    #main-container #categories .categories-buttons {
-      display: grid;
-      grid-gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  #main-container #categories h1 {
+    text-align: center; }
+  #main-container #categories .categories-buttons {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
   #main-container .container {
-    max-width: 1100px;
-    margin: 0 auto; }
-    #main-container .container .most-rented {
+    max-width: 1100px; }
+    #main-container .container .list-books {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, auto);
+      grid-template-columns: repeat(3, 1fr);
+      /*grid-template-rows: repeat(3, auto);*/
       grid-gap: 1rem; }
-      #main-container .container .most-rented .book-rented {
-        display: grid; }
-        #main-container .container .most-rented .book-rented img {
+      #main-container .container .list-books .item-book {
+        display: grid;
+        border: 1px solid #3d464d;
+        border-radius: 10px; }
+        #main-container .container .list-books .item-book img {
+          border-radius: 10px 10px 0 0;
           width: 100%; }
-        #main-container .container .most-rented .book-rented .card {
+        #main-container .container .list-books .item-book .card {
           background-color: #ffffff;
           padding: 1rem;
           border: 1px solid #AAA; }
@@ -147,5 +170,11 @@ header {
   .most-rented {
     grid-template-columns: repeat(3, 1fr) !important;
     grid-template-rows: repeat(3, auto); } }
+.container-singleBook {
+  display: flex; }
+  .container-singleBook .img-thumbnail {
+    border: none; }
+  .container-singleBook .info-book .titol-info {
+    font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */

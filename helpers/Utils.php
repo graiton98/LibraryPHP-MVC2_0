@@ -2,6 +2,11 @@
 
 class Utils{
     
+    static function notLogin(){
+        if(isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
+        else return false;
+    }
+    
     static function isLogin(){
         if(!isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
         else return false;
@@ -49,6 +54,11 @@ class Utils{
         require_once 'models/Author.php';
         $author= new Author();
         return $author->getAll();
+    }
+    static function existBorrow($idReserve){
+        require_once 'models/Reserve.php';
+        require_once 'models/Borrow.php';
+        
     }
 }
 

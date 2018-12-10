@@ -1,6 +1,7 @@
 <?php
 require_once 'models/Reserve.php';
 require_once 'models/User.php';
+require_once 'models/Borrow.php';
 class ReserveController{
     function index(){
         echo "Reserve Controller Index Action";
@@ -59,7 +60,7 @@ class ReserveController{
         die();
         $sql1 = "select count(*) from reservation where takenDate between;
         $fecha->add(new DateInterval('P21D'));
-        $sql2 = "select count(*) from reservation where takenDate=".$fecha->format('Y-m-d');*/  
+        $sql2 = "select count(*) from reservation where takenDate=".$fecha->format('Y-m-d');*/
     }
 }
 

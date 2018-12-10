@@ -22,44 +22,47 @@
     </head>
     <body>
         <header>
-            <div class="logo"><a href="<?=BASE_URL?>">Feather</a></div>
-            
-            <nav>
-                <ul>
-                    <?php if(!isset($_SESSION['userIdentity'])): ?>
-                        <li>
-                            <a href="<?=BASE_URL?>user/login">Login</a>
-                        </li>
-                        <li>
-                            <a href="<?=BASE_URL?>user/register">Register</a>
-                        </li>
-                        
-                    <?php else: ?>
-                        <li>
-                            <a href="<?=BASE_URL?>user/browse">Edit Profile</a>
-                        </li>
+            <div class="center header">
+                <!--<div><a href="<?=BASE_URL?>"><img class="logo" src="<?=BASE_URL?>assets/img/logo.png"</a></div>-->
+                <div><a href="<?=BASE_URL?>" class="logo"><i class="fas fa-feather-alt"></i>FEATHER</a></div>
 
-                        <li>
-                            <a href="#">My Reservations</a>
-                        </li>
-                        <?php if(isset($_SESSION['admin']) || isset($_SESSION['librarian'])):?>
-                        
+                <nav>
+                    <ul>
+                        <?php if(!isset($_SESSION['userIdentity'])): ?>
                             <li>
-                                <a href="<?=BASE_URL?>category/see">Manage Categories</a>
+                                <a href="<?=BASE_URL?>user/login" class="btn btn-success" role="button" aria-pressed="true">Login</a>
                             </li>
                             <li>
-                                <a href="<?=BASE_URL?>user/seeAll">Manage Users</a>
+                                <a href="<?=BASE_URL?>user/register" class="btn btn-success" role="button" aria-pressed="true">Register</a>
                             </li>
+
+                        <?php else: ?>
                             <li>
-                                <a href="<?=BASE_URL?>book/seeAll">Manage Books</a>
+                                <a href="<?=BASE_URL?>user/browse" class="btn btn-secondary" role="button" aria-pressed="true">Profile</a>
                             </li>
+
+                            <li>
+                                <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">Reservations</a>
+                            </li>
+                            <?php if(isset($_SESSION['admin']) || isset($_SESSION['librarian'])):?>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Admin
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a href="<?=BASE_URL?>category/see">Manage Categories</a>
+                                  <a href="<?=BASE_URL?>user/seeAll">Manage Users</a>
+                                  <a href="<?=BASE_URL?>book/seeAll">Manage Books</a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+                                <li>
+                                    <a href="<?=BASE_URL?>user/logout" class="btn btn-danger">Logout</a>
+                                </li>
                         <?php endif; ?>
-                            <li>
-                                <a href="user/logout">Logout</a>
-                            </li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
+            </div>
         </header>
         <div id="main-container">
 

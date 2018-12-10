@@ -80,6 +80,5 @@ class Reserve{
         $result = $this->db->query($sql);
         return $result;
     }
-    
 }
 

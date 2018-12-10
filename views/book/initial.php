@@ -1,4 +1,6 @@
-<div class="content">
+<div class="center">
+    
+
     <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -31,94 +33,71 @@
             <h1>Categories</h1>
             <div class="categories-buttons">
                 <?php while($cat = $categories->fetch_object()): ?>
-                    <a href="#"><?=$cat->name_category?></a>
+                <a href="#" class="btn text-white" style="background-color: #1070ff"><?=$cat->name_category?></a>
                 <?php endwhile; ?>
             </div>
             
         </div>
     <?php endif; ?>
     
-    <!--<div id="categories">
-        <h1>Categories</h1>
-        <div class="categories-buttons">
-            <button class="button">Mistery</button>
-            <button class="button">Science</button>
-            <button class="button">Literature</button>
-            <button class="button">Black Novel</button>
-            <button class="button">Computing</button>
-
-            <button class="button">Cook</button>
-            <button class="button">Health</button>
-            <button class="button">Literature</button>
-            <button class="button">History</button>
-            <button class="button">Fantasy</button>
-        </div>
-    </div>-->
 
     <div class="container">
-        <h1>Most Rented</h1>
-        <div class="most-rented">
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1">More Information</a>
+        <h1>Books</h1>
+        <div class="list-books">
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn text-white" style="background-color: #00b0ff">More Information</a>
                 </div>
             </div>
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="#" >More Information</a>
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
                 </div>
             </div>
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="#" >More Information</a>
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
                 </div>
             </div>
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="#">More Information</a>
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
                 </div>
             </div>
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="#" >More Information</a>
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
                 </div>
             </div>
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="#" class="button">More Information</a>
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
                 </div>
             </div>
-            <div class="book-rented">
-                <img src="assets/img/casa3.jpg">
-                <div class="card">
-                    <h2>Harry Potter</h2>
-                    <p>By Gabriel Lopez</p>
-                    <p>Estrelles</p>
-                    <a href="#" class="button">More Information</a>
+            <div class="item-book">
+                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <div class="card-body">
+                    <h2 class="card-title">Harry Potter</h2>
+                    <p class="card-text">By Gabriel Lopez</p>
+                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
                 </div>
             </div>
         </div>

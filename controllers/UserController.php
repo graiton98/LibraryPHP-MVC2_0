@@ -3,12 +3,9 @@ require_once 'models/User.php';
 require_once 'models/Reserve.php';
 require_once 'models/Book.php';
 class UserController{
-    
-    public function index(){
-        echo "User Controller, Index Action";
-    }
+
     function login(){
-        Utils::isLogin();
+        Utils::notLogin();
         require_once 'views/user/login.php';
     }
     function saveLogin(){
@@ -52,7 +49,7 @@ class UserController{
         header("Location:".BASE_URL);
     }
     function register(){
-        Utils::isLogin();
+        Utils::notLogin();
         require_once 'views/user/register.php';
     }
     
