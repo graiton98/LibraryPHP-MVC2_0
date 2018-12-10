@@ -18,7 +18,7 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Status</th>
-                <th scope="col">Browse</th>
+                <th scope="col">Browse/Edit</th>
                 <th scope="col">Delete</th>
             </tr>
         </thead>

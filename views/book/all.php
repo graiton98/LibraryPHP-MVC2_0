@@ -20,7 +20,7 @@
                 <th scope="col">Isbn</th>
                 <th scope="col">Name</th>
                 <th scope="col">Copies</th>
-                <th scope="col">Browse</th>
+                <th scope="col">Browse/Edit</th>
                 <th scope="col">Delete</th>
             </tr>
         </thead>

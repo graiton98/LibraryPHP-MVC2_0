@@ -20,7 +20,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">Name</th>
                 <th scope="col">Surname</th>
-                <th scope="col">Browse</th>
+                <th scope="col">Browse/Edit</th>
                 <th scope="col">Delete</th>
                 <th scope="col">Reservations & Borrows</th>
             </tr>

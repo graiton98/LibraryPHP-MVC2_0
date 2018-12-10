@@ -13,7 +13,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col">First Surname</th>
-                <th scope="col">Browse</th>
+                <th scope="col">Browse/Edit</th>
                 <th scope="col">Delete</th>
             </tr>
         </thead>

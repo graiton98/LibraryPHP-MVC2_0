@@ -17,7 +17,7 @@
        <thead class="thead-dark">
         <tr>
           <th scope="col">Category Name</th>
-          <th scope="col">Edit</th>
+          <th scope="col">Browse/Edit</th>
           <th scope="col">Delete</th>
         </tr>
       </thead>
