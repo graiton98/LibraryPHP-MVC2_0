@@ -1,9 +1,5 @@
 <div class="center">
     <?php if(isset($_GET)): ?>
-        <?php if(isset($_SESSION['result_reserve'])):?>
-            <h1><?=$_SESSION['result_reserve']?></h1>
-            <?php Utils::deleteSession('result_reserve'); ?>
-        <?php endif; ?>
         <h1>Reservation</h1>
         <?php if(isset($_SESSION['result_reserve'])): ?>
             <?php if(substr($_SESSION['result_reserve'], 0, 1) == 'S'): ?>

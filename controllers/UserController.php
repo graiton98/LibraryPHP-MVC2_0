@@ -19,7 +19,7 @@ class UserController{
             // Create session
             if($userIdentify && is_object($userIdentify)){
                 $_SESSION['userIdentity'] = $userIdentify;
-                
+                $_SESSION['login'] = "Succesfull: Login Correct.";
                 if($userIdentify->type_of_user == 3){
                     $_SESSION['admin'] = true;
                 }elseif($userIdentify->type_of_user == 2){
@@ -105,7 +105,7 @@ class UserController{
         }else{
             $_SESSION['register'] = "Error: Register Error";
         }
-        if($_SESSION['register'] == "completed")header("Location:".BASE_URL);
+        if($_SESSION['register'] == "Succesfull: Register Completed.")header("Location:".BASE_URL);
         else header("Location:".BASE_URL."user/register");
     }
     function seeAll(){
@@ -224,7 +224,6 @@ class UserController{
             }else{
                 header('Location:'.BASE_URL.'user/browse');
             }
-            
         }else{
             header('Location:'.BASE_URL);
         }

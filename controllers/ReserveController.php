@@ -22,13 +22,16 @@ class ReserveController{
             /*var_dump($_POST);
             die();*/
             $dateObj = new DateTime($date);
+            $dateObj2 = new DateTime($date);
             $userDate = $dateObj->format('Y-m-d');
             
             $dateObj->sub(new DateInterval('P21D'));
             $userDateLess20 = $dateObj->format('Y-m-d');
             
-            $dateObj->add(new DateInterval('P41D'));
-            $userDateAdd20 = $dateObj->format('Y-m-d');
+            $dateObj2->add(new DateInterval('P21D'));
+            $userDateAdd20 = $dateObj2->format('Y-m-d');
+            //$dateObj->add(new DateInterval('P41D'));
+            //$userDateAdd20 = $dateObj->format('Y-m-d');
             
             /*echo $dateObj->format('Y-m-d');
             die();*/
