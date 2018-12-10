@@ -1,10 +1,6 @@
 <?php
 require_once 'models/Category.php';
 class CategoryController{
-    
-    function index(){
-        echo "Category Controller, Index Action";
-    }
     function see(){
         Utils::hasPower(); // Check if session admin or librarian exists
         $categories = Utils::showCategories();

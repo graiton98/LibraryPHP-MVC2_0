@@ -2,10 +2,8 @@
 require_once 'models/Reserve.php';
 require_once 'models/User.php';
 require_once 'models/Borrow.php';
+require_once 'models/Book.php';
 class ReserveController{
-    function index(){
-        echo "Reserve Controller Index Action";
-    }
     function create(){
         Utils::isLogin();
         if(isset($_GET)){
@@ -36,8 +34,8 @@ class ReserveController{
             die();*/
             $reserveObj = new Reserve();
             $reserveObj->setId_book_fk($id);
-            if(isset($_POST['user']) && $_POST['user'] == "") $reserveObj->setId_username($_SESSION['userIdentity']->id);
-            elseif(isset($_POST['user']) && $_POST['user'] != "") $reserveObj->setId_username($_POST['user']);
+            if(!isset($_POST['user'])) $reserveObj->setId_username($_SESSION['userIdentity']->id);
+            else $reserveObj->setId_username($_POST['user']);
             $reserveObj->setTakenDate($userDate);
             $reserveObj->calculateNumCopies();
             
@@ -62,5 +60,12 @@ class ReserveController{
         $fecha->add(new DateInterval('P21D'));
         $sql2 = "select count(*) from reservation where takenDate=".$fecha->format('Y-m-d');*/
     }
+    function mine(){
+            Utils::isLogin();
+            $reserve = new Reserve();
+            $reserve->setId_username($_SESSION['userIdentity']->id);
+            $reserves = $reserve->getAllReservesByIdUser();
+            require_once 'views/reserve/mine.php';
+        }
 }
 

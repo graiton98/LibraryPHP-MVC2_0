@@ -42,7 +42,7 @@
                             </li>
 
                             <li>
-                                <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">Reservations</a>
+                                <a href="<?=BASE_URL?>reserve/mine" class="btn btn-secondary" role="button" aria-pressed="true">Reservations</a>
                             </li>
                             <?php if(isset($_SESSION['admin']) || isset($_SESSION['librarian'])):?>
                             <div class="dropdown">
