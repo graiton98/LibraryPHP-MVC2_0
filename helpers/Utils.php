@@ -58,7 +58,12 @@ class Utils{
     static function existBorrow($idReserve){
         require_once 'models/Reserve.php';
         require_once 'models/Borrow.php';
-        
+    }
+    static function allBooks(){
+        require_once 'models/Book.php';
+        $book = new Book();
+        $books = $book->getAll();
+        return $books;
     }
 }
 

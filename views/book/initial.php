@@ -44,62 +44,25 @@
     <div class="container">
         <h1>Books</h1>
         <div class="list-books">
+            <?php $books = Utils::allBooks(); ?>
+            <?php $authors = Utils::getAuthors(); ?>
+            <?php while($book = $books->fetch_object()): ?>
             <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
+                <img class="card-img-top" src="<?=BASE_URL?>assets/img/<?=$book->isbn?>.<?=$book->extImage?>">
                 <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn text-white" style="background-color: #00b0ff">More Information</a>
+                    <h2 class="card-title"><?=$book->name_book?></h2>
+                    <?php 
+                        $authors = Utils::getAuthors();
+                        while ($aut = $authors->fetch_object()): ?>
+                        <?php if(isset($book) && is_object($book) && $aut->id == $book->author_id): ?>
+                            <p class="card-text">By <?=$aut->name_author.' '.$aut->first_surname?></p>
+                        <?php endif; ?>
+                        </option>
+                    <?php endwhile; ?>
+                    <a href="<?=BASE_URL?>Book/see&id=<?=$book->id?>" class="btn text-white" style="background-color: #00b0ff">More Information</a>
                 </div>
             </div>
-            <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
-                <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
-                </div>
-            </div>
-            <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
-                <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
-                </div>
-            </div>
-            <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
-                <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
-                </div>
-            </div>
-            <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
-                <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
-                </div>
-            </div>
-            <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
-                <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
-                </div>
-            </div>
-            <div class="item-book">
-                <img class="card-img-top" src="assets/img/casa3.jpg">
-                <div class="card-body">
-                    <h2 class="card-title">Harry Potter</h2>
-                    <p class="card-text">By Gabriel Lopez</p>
-                    <a href="<?=BASE_URL?>Book/see&id=1" class="btn btn-primary">More Information</a>
-                </div>
-            </div>
+            <?php endwhile; ?>
         </div>
 
     </div>

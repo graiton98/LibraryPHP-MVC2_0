@@ -37,7 +37,7 @@
             <?php 
                 $authors = Utils::getAuthors();
                 while ($aut = $authors->fetch_object()): ?>
-                <?php if(isset($book) && is_object($book) && $cat->id == $book->getAuthor_id()): ?>
+                <?php if(isset($book) && is_object($book) && $aut->id == $book->getAuthor_id()): ?>
                 <option value="<?=$aut->id?>" selected="">
                 <?php else: ?>
                 <option value="<?=$aut->id?>">
