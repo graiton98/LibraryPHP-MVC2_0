@@ -53,6 +53,7 @@
                                   <a href="<?=BASE_URL?>category/see">Manage Categories</a>
                                   <a href="<?=BASE_URL?>user/seeAll">Manage Users</a>
                                   <a href="<?=BASE_URL?>book/seeAll">Manage Books</a>
+                                  <a href="<?=BASE_URL?>author/see">Manage Authors</a>
                                 </div>
                             </div>
                             <?php endif; ?>

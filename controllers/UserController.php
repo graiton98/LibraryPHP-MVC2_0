@@ -49,7 +49,6 @@ class UserController{
         header("Location:".BASE_URL);
     }
     function register(){
-        Utils::notLogin();
         require_once 'views/user/register.php';
     }
     

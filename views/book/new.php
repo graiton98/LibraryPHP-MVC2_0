@@ -8,15 +8,15 @@
     <?php endif; ?>
     <form action="<?=$url_action?>" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="isbn">Isbn</label>
+            <label for="isbn">Isbn<span class="text-danger font-weight-bold">*</span></label>
             <input class="form-control" type="number" name="isbn" minlength="13" maxlength="13" required="" value="<?= isset($book) && is_object($book) ? $book->getIsbn() : ''?>"/>
         </div>
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Name<span class="text-danger font-weight-bold">*</span></label>
             <input class="form-control" type="text" name="name" required="" value="<?= isset($book) && is_object($book) ? $book->getName_book() : ''?>"/>
         </div>
         <div class="form-group">
-            <label for="category">Category</label>
+            <label for="category">Category<span class="text-danger font-weight-bold">*</span></label>
             <select name="category" class="form-control">
             <?php 
                 $categories = Utils::showCategories();
@@ -32,7 +32,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="author">Author</label>
+            <label for="author">Author<span class="text-danger font-weight-bold">*</span></label>
             <select name="author" class="form-control">
             <?php 
                 $authors = Utils::getAuthors();
@@ -48,7 +48,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">Description<span class="text-danger font-weight-bold">*</span></label>
             <textarea class="form-control" rows="3" name="description" id="description" required=""><?= isset($book) && is_object($book) ? $book->getDescription() : ''?></textarea>
         </div>
         <div class="form-group widget">
@@ -63,8 +63,9 @@
         <div class="form-group">
             <?php if(isset($book) && is_object($book)): ?>
             <label for="img">Cover Page <?=$book->getIsbn().'.'.$book->getExtImage()?> Selected before Change</label>
-            <input type="file" name="img" value="<?='assets/img/'.$book->getIsbn().'.'.$book->getExtImage()?>" accept="image/*"/>
+            <input ype="file" name="img" value="<?='assets/img/'.$book->getIsbn().'.'.$book->getExtImage()?>" accept="image/*"/>
             <?php else: ?>
+            <label for="img">Cover Page <span class="text-danger font-weight-bold">*</span></label>
             <input type="file" name="img" required="" accept="image/*"/>
             <?php endif; ?>
         </div>

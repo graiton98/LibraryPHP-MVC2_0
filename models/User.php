@@ -109,7 +109,7 @@ class User{
         $SQLQuery = "select * from users where id={$this->id}";
         $login = $this->db->query($SQLQuery);
         if($login->num_rows == 1)return true; // There is an with that user
-        return false; // There isn't an user with that id
+        else return false; // There isn't an user with that id
     }
     private function checkUser(){
         $SQLQuery = "select * from users where username='{$this->username}'";
@@ -118,16 +118,16 @@ class User{
         }
         $login = $this->db->query($SQLQuery);
         if($login->num_rows == 1 || !$this->username)return false;
-        return true;
+        else return true;
     }
     private function checkName_User(){
         if(is_numeric($this->name_user) || preg_match("/[0-9]/", $this->name_user) || !$this->name_user) return false;
-        return true;
+        else return true;
     }
     
     private function checkFirst_surname(){
         if(is_numeric($this->first_surname) || preg_match("/[0-9]/", $this->first_surname) || !$this->first_surname) return false;
-        return true;
+        else return true;
     }
     
     private function checkDni(){

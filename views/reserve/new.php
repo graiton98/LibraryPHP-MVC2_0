@@ -18,7 +18,7 @@
                 <input class="form-control" type="text" name="name" value="<?=$book->getName_book()?>" readonly=""/>
             </div>
             <div class="form-group">
-                <label for="takenDate">Taken Date</label>
+                <label for="takenDate">Taken Date<span class="text-danger font-weight-bold">*</span></label>
                 <input class="form-control" type="text" id="datepicker" name="takenDate" required="" autocomplete="off"  />
             </div>
             <?php if(isset($_SESSION['admin']) || isset($_SESSION['librarian'])): ?>
