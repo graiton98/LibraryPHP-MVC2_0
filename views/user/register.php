@@ -1,8 +1,16 @@
 <div class="center">
     <h1>Register</h1>
-    <?php if(isset($_SESSION['register']) && $_SESSION['register'] == "failed"): ?>
-        <h1>REGISTER ERROR</h1>
-        <?php Utils::deleteSession('register') ?>
+    <?php if(isset($_SESSION['register'])): ?>
+        <?php if(substr($_SESSION['register'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['register']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['register']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('register'); ?>
     <?php endif; ?>
     <form action="<?=BASE_URL?>user/saveRegister" method="POST">             
         <div class="form-group">

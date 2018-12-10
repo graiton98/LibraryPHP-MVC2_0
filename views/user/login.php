@@ -1,8 +1,16 @@
 <div class="center">
     <h1>Login</h1>
-    <?php if(isset($_SESSION['error_login'])): ?>
-        <h1>LOGIN ERROR</h1>
-        <?php Utils::deleteSession('error_login') ?>
+    <?php if(isset($_SESSION['login'])): ?>
+        <?php if(substr($_SESSION['login'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['login']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['login']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('login'); ?>
     <?php endif; ?>
     <form action="<?=BASE_URL?>user/saveLogin" method="POST">
         <div class="form-group">

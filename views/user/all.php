@@ -1,5 +1,17 @@
 <div class="center">
     <h1>List of Users</h1>
+    <?php if(isset($_SESSION['user_result'])): ?>
+        <?php if(substr($_SESSION['user_result'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['user_result']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['user_result']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('user_result'); ?>
+    <?php endif; ?>
     <a href="<?=BASE_URL?>user/register" class="btn btn-success"><i class="fas fa-plus"></i>Add User</a>
     <table class="table">
         <thead class="thead-dark">

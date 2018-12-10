@@ -26,10 +26,10 @@ class UserController{
                     $_SESSION['librarian'] = true;
                 } 
             }else{
-                $_SESSION['error_login'] = "Failed Identification";
+                $_SESSION['login'] = "Error: Failed Identification";
             }
         }else{
-            $_SESSION['error_login'] = "Failed Identification";
+            $_SESSION['login'] = "Error: Failed Identification";
         }
         if(isset($_SESSION['userIdentity'])) header ('Location:'.BASE_URL);
         else header("Location:".BASE_URL."user/login");
@@ -51,7 +51,6 @@ class UserController{
     function register(){
         require_once 'views/user/register.php';
     }
-    
     function getUser($username, $name_user, $first_surname, $dni, $email, $phone_number, $type_of_user, $password = -1){
         $user = new User();
         $user->setUsername($username);
@@ -94,18 +93,17 @@ class UserController{
 
 
                 if($save){
-                    $_SESSION['register'] = "completed";
-
+                    $_SESSION['register'] = "Succesfull: Register Completed.";
                 }else{
-                    $_SESSION['register'] = "failed";
+                    $_SESSION['register'] = "Error: Register Error";
                 }
             }else{
                 /*echo '<pre>' . var_export($errors, true) . '</pre>';
                 die();*/
-                $_SESSION['register'] = "failed";
+                $_SESSION['register'] = "Error: Register Error";
             }  
         }else{
-            $_SESSION['register'] = "failed";
+            $_SESSION['register'] = "Error: Register Error";
         }
         if($_SESSION['register'] == "completed")header("Location:".BASE_URL);
         else header("Location:".BASE_URL."user/register");
@@ -123,14 +121,13 @@ class UserController{
             $user->setId($_GET['id']);
             if($user->checkIfUserExistsById()){
                 $user->delete();
-                $_SESSION['user_result'] = "User deleted succesfully";
+                $_SESSION['user_result'] = "Success: User deleted";
                 header('Location:'.BASE_URL.'user/seeAll');
             }else{
-                $_SESSION['user_result'] = "User selected doesn't exist";
-                header('Location:'.BASE_URL);
+                $_SESSION['user_result'] = "Error: User selected doesn't exist";
+                header('Location:'.BASE_URL.'user/seeAll');
             }
         }else{
-            
             header('Location:'.BASE_URL);
         }
     }
@@ -215,13 +212,12 @@ class UserController{
                 die();*/
                 $save = $user->save();
                 if($save){
-                    $_SESSION['update'] = "completed";
-
+                    $_SESSION['user_result'] = "Success: Update Completed";
                 }else{
-                    $_SESSION['update'] = "failed";
+                    $_SESSION['user_result'] = "Error: Update Failed";
                 }
             }else{
-                $_SESSION['update'] = "failed";
+                $_SESSION['user_result'] = "Error: Update Failed";
             }
             if(isset($_GET['id'])){
                 header('Location:'.BASE_URL.'user/browse&id='.$user->getId());

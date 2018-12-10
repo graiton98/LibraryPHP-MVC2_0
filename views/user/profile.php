@@ -1,5 +1,17 @@
 <div class="center">
     <h1>Profile</h1>
+    <?php if(isset($_SESSION['user_result'])): ?>
+        <?php if(substr($_SESSION['user_result'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['user_result']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['user_result']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('user_result'); ?>
+    <?php endif; ?>
     <form class="form-group" action="<?=BASE_URL?>user/saveUpdate&id=<?=$user->getId()?>" method="POST">
         <div class="form-group">
             <label for="username">Username<span class="text-danger font-weight-bold">*</span></label>

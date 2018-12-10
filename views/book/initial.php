@@ -1,6 +1,28 @@
 <div class="center">
-    
-
+    <?php if(isset($_SESSION['login'])): ?>
+        <?php if(substr($_SESSION['login'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['login']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['login']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('login'); ?>
+    <?php endif; ?>
+    <?php if(isset($_SESSION['register'])): ?>
+        <?php if(substr($_SESSION['register'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['register']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['register']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('register'); ?>
+    <?php endif; ?>
     <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
