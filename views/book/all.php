@@ -16,7 +16,7 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">id</th>
+                <th scope="col">Id</th>
                 <th scope="col">Isbn</th>
                 <th scope="col">Name</th>
                 <th scope="col">Copies</th>
