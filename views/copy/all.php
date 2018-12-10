@@ -1,11 +1,17 @@
 <div class="center">
     <h1>Copies of <?=$book->getName_book()?></h1>
-    <?php 
-        if(isset($_SESSION['copy'])){
-            echo '<p>'.$_SESSION['copy'].'</p>';
-            Utils::deleteSession('copy');
-        }
-    ?>
+    <?php if(isset($_SESSION['copy'])): ?>
+        <?php if(substr($_SESSION['copy'], 0, 1) == 'S'):?>
+            <div class="alert alert-success">
+                <?=$_SESSION['copy']?>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-danger">
+                <?=$_SESSION['copy']?>
+            </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('copy');?>
+    <?php endif; ?>
     <a href="<?=BASE_URL?>copy/add&bookId=<?=$book->getId()?>" class="btn btn-success">Add Copy</a>
     <table class="table">
         <thead class="thead-dark">

@@ -1,7 +1,15 @@
 <div class="center">
     <h1>Categories</h1>
     <?php if(isset($_SESSION['category_result'])):?>
-        <p><?php echo $_SESSION['category_result']?></p>
+        <?php if(substr($_SESSION['category_result'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['category_result']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['category_result']?>
+        </div>
+        <?php endif; ?>
         <?php Utils::deleteSession('category_result') ?>
     <?php endif; ?>
     <a href="<?=BASE_URL?>category/add" class="btn btn-success"><i class="fas fa-plus"></i>Add Category</a>

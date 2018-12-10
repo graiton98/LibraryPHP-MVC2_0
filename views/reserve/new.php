@@ -5,6 +5,17 @@
             <?php Utils::deleteSession('result_reserve'); ?>
         <?php endif; ?>
         <h1>Reservation</h1>
+        <?php if(isset($_SESSION['result_reserve'])): ?>
+            <?php if(substr($_SESSION['result_reserve'], 0, 1) == 'S'): ?>
+                <div class="alert alert-success">
+                    <?=$_SESSION['result_reserve']?>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-danger">
+                    <?=$_SESSION['result_reserve']?>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?>
         <form action="<?=BASE_URL?>reserve/checkDates" method="POST">
             <div class="form-group">
                 <label for="id">Id</label>

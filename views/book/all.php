@@ -1,12 +1,17 @@
 <div class="center">
     <h1>List of Book</h1>
-    <!-- Si es susccesfully pintar verd sino vermell-->
-    <?php 
-        if(isset($_SESSION['book'])){
-            echo "<p>".$_SESSION['book']."</p>"; 
-            Utils::deleteSession('book');     
-        } 
-    ?>
+    <?php if(isset($_SESSION['book'])): ?>
+        <?php if(substr($_SESSION['book'], 0, 1) == 'S'): ?>
+        <div class="alert alert-success">
+            <?=$_SESSION['book']?>
+        </div>
+        <?php else: ?>
+        <div class="alert alert-danger">
+            <?=$_SESSION['book']?>
+        </div>
+        <?php endif; ?>
+        <?=Utils::deleteSession('book'); ?>
+    <?php endif; ?>
     <a href="<?=BASE_URL?>book/add" class="btn btn-success"><i class="fas fa-plus"></i>Add Book</a>
     <table class="table">
         <thead class="thead-dark">

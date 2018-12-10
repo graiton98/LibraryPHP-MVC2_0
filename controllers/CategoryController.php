@@ -21,13 +21,11 @@ class CategoryController{
             $category->setName_category($name_category);
             if(!$category->checkIfExists()){
                 $category->add();
-                $_SESSION['category_result'] = "Category added succesfully";
-                header('Location:'.BASE_URL."category/see");
+                $_SESSION['category_result'] = "Succesfull: Category added succesfully.";
             }else{
-                $_SESSION['category_result'] = "There is aldready a category with that name";
-                $_SESSION['name_category'] = $category->getName_category();
-                header('Location:'.BASE_URL."category/add");
+                $_SESSION['category_result'] = "Error: There is aldready a category with that name.";
             }
+            header('Location:'.BASE_URL."category/see");
         }else{
             header('Location:'.BASE_URL);
         }
@@ -58,12 +56,11 @@ class CategoryController{
             $category->setId($id);
             if($category->checkIfExistsById()){
                 $category->delete();
-                $_SESSION['category_delete_result'] = "Category deleted succesfully";
-                header('Location:'.BASE_URL."category/see");
+                $_SESSION['category_result'] = "Succesfull: Category deleted succesfully";
             }else{
-                $_SESSION['category_delete_result'] = "There isn't a category with that id";
-                header('Location:'.BASE_URL."category/see");
+                $_SESSION['category_result'] = "Error: There isn't a category with that id";
             }
+            header('Location:'.BASE_URL."category/see");
         }else{
             header('Location:'.BASE_URL);
         }
@@ -77,13 +74,12 @@ class CategoryController{
                $category->setName_category(ucfirst($_POST['category']));
                if(!$category->checkIfExists()){
                    $category->save();
-                   $_SESSION['category_result'] = "Category modified succesfully";
-                   header('Location:'.BASE_URL."category/see");
+                   $_SESSION['category_result'] = "Succesfull: Category modified succesfully";
+                   
                }else{
-                   $_SESSION['category_result'] = "There is aldready a category with that name";
-                   $_SESSION['name_category'] = $category->getName_category();
-                   header('Location:'.BASE_URL."category/edit&id={$category->getId()}");
+                   $_SESSION['category_result'] = "Error: There is aldready a category with that name";
                }
+               header('Location:'.BASE_URL."category/see");
             }else{
                 header('Location:'.BASE_URL);
             }

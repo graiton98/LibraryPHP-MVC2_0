@@ -44,9 +44,9 @@ class ReserveController{
             if($result){
                 // Create Reserve
                 $reserveObj->add();
-                $_SESSION['result_reserve'] = "Reserve has been done successfully";
+                $_SESSION['result_reserve'] = "Success: Reserve has been done.";
             }else{
-                $_SESSION['result_reserve'] = "Selected Date isn't available, select another one.";
+                $_SESSION['result_reserve'] = "Error: Selected Date isn't available, select another one.";
             }
             header('Location:'.BASE_URL.'Reserve/create&id='.$id);
             

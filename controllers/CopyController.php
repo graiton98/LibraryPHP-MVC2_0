@@ -24,9 +24,9 @@ class CopyController{
             $exist = $copy->checkIfExistsById();
             if($exist){
                 $copy->delete();
-                $_SESSION['copy'] = "Copy deleted succesfully";
+                $_SESSION['copy'] = "Succesfull: Copy deleted.";
             }else{
-                $_SESSION['copy'] = "Copy selected doesn't exist";
+                $_SESSION['copy'] = "Error: Copy selected doesn't exist";
             }
             header('Location:'.BASE_URL.'copy/seeAll&id='.$_GET['bookId']);
         }else{
@@ -71,7 +71,7 @@ class CopyController{
             $_SESSION['copy'] = "Succesfully";
             header('Location:'.BASE_URL.'copy/seeAll&id='.$id_book_fk);
         }else{
-            $_SESSION['copy'] = "Copy Error";
+            $_SESSION['copy'] = "Error";
             header('Location:'.BASE_URL.'book/seeAll');
         }
         
