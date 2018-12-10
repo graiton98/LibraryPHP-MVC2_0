@@ -92,7 +92,6 @@ create table Borrow(
     id              int(255) not null auto_increment primary key,
     id_copy_fk      int(255) not null,
     id_book_copy_fk int(255) not null,
-    code_reservation int(255) not null,
     id_username     int(255) not null,
     takenDate       date not null,
     returnDate      date,
