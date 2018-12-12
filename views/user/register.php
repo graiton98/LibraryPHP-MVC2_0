@@ -33,7 +33,7 @@
             <label for="dni">Dni<span class="text-danger font-weight-bold">*</span></label>
             <input class="form-control" type="text" name="dni" required="" placeholder="Enter your dni" onfocus="this.placeholder = ''" onblur="this.placeholder='Enter your dni'"/>
         </div>
-        <div cclass="form-group">
+        <div class="form-group">
             <label for="email">Email<span class="text-danger font-weight-bold">*</span></label>
             <input class="form-control" type="email" name="email" required="" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder='Enter your email'"/>
         </div>

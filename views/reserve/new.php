@@ -11,6 +11,7 @@
                     <?=$_SESSION['result_reserve']?>
                 </div>
             <?php endif; ?>
+            <?=Utils::deleteSession('result_reserve')?>
         <?php endif; ?>
         <form action="<?=BASE_URL?>reserve/checkDates" method="POST">
             <div class="form-group">
